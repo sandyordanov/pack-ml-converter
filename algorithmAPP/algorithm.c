@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <librdkafka/rdkafka.h>
 #include <cjson/cJSON.h>
+#include <string.h>
+
 
 // // Function to consume messages from Kafka
 // void consume_kafka_message(rd_kafka_message_t *rkmessage) {
@@ -138,7 +140,32 @@
 //     return 0;
 // }
 
-int previous_payload = -1; // Start with -1 to indicate no previous value
+#define MAX_ENTITIES 100
+
+// Structure to hold the state of each DataEntity
+typedef struct
+{
+    char name[50];    // Adjust size as needed
+    int currentValue; // 1 for executing, 0 for idle
+    int timestamp;    // Store the timestamp
+} DataEntity;
+
+// Array to hold the states of entities
+DataEntity entities[MAX_ENTITIES];
+int entityCount = 0;
+
+// Function to find an entity by name
+DataEntity *find_entity(const char *name)
+{
+    for (int i = 0; i < entityCount; i++)
+    {
+        if (strcmp(entities[i].name, name) == 0)
+        {
+            return &entities[i];
+        }
+    }
+    return NULL; // Not found
+}
 
 // Function to simulate consuming messages from Kafka
 void consume_kafka_message_simulated(const char *json_data)
@@ -156,47 +183,51 @@ void consume_kafka_message_simulated(const char *json_data)
     cJSON *payload = cJSON_GetObjectItemCaseSensitive(json, "Payload");
     cJSON *timestamp = cJSON_GetObjectItemCaseSensitive(json, "Timestamp");
 
-    // Print the extracted values
-    if (cJSON_IsString(name) && name->valuestring != NULL)
+    // Ensure name is a string and payload/timestamp are numbers
+    if (!cJSON_IsString(name) || !cJSON_IsNumber(payload) || !cJSON_IsNumber(timestamp))
     {
-        printf("Name: %s\n", name->valuestring);
+        printf("Invalid data format\n");
+        cJSON_Delete(json);
+        return;
     }
 
-    if (cJSON_IsNumber(payload))
-    {
-        printf("Payload: %d\n", payload->valueint);
-    }
+    // Find the entity in the list
+    DataEntity *entity = find_entity(name->valuestring);
 
-    if (cJSON_IsNumber(timestamp))
+    if (entity)
     {
-        printf("Timestamp: %d\n", timestamp->valueint);
-    }
-
-    if (cJSON_IsNumber(payload))
-    {
+        // Entity already exists, check its current value
         int current_payload = payload->valueint;
 
         // Check for invalid state transitions
-        if (previous_payload != -1 && current_payload == previous_payload) // checks if 1 is not sent after 0 and vice versa
-        {
-            printf("Error: Invalid transition. Payload value did not change (stayed at %d).\n", current_payload);
+        if (current_payload == entity->currentValue)
+        { // Check if the current payload is the same as the previous
+            printf("Error: %s already has the value %d\n", name->valuestring, entity->currentValue);
         }
         else
         {
-            if (current_payload == 1)
-            {
-                printf("Status: executing\n");
-            }
-            else if (current_payload == 0)
-            {
-                printf("Status: idle\n");
-            }
-            else
-            {
-                printf("Unknown Payload value: %d\n", payload->valueint);
-            }
-            // Update the previous payload value
-            previous_payload = current_payload;
+            // Update the entity's current value and timestamp
+            entity->currentValue = current_payload;
+            entity->timestamp = timestamp->valueint; // Update the timestamp
+            printf("Name: %s, Status: %s, Timestamp: %d\n", name->valuestring,
+                   (current_payload == 1) ? "executing" : "idle", entity->timestamp);
+        }
+    }
+    else
+    {
+        // New entity, add it to the list
+        if (entityCount < MAX_ENTITIES)
+        {
+            strcpy(entities[entityCount].name, name->valuestring);
+            entities[entityCount].currentValue = payload->valueint;
+            entities[entityCount].timestamp = timestamp->valueint; // Set timestamp for new entity
+            printf("Name: %s, Status: %s, Timestamp: %d\n", name->valuestring,
+                   (payload->valueint == 1) ? "executing" : "idle", entities[entityCount].timestamp);
+            entityCount++;
+        }
+        else
+        {
+            printf("Error: Maximum entity limit reached\n");
         }
     }
 
