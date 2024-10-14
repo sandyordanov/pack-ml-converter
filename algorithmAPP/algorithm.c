@@ -177,7 +177,7 @@ void consume_kafka_message_simulated(const char *json_data)
         int current_payload = payload->valueint;
 
         // Check for invalid state transitions
-        if (previous_payload != -1 && current_payload == previous_payload)
+        if (previous_payload != -1 && current_payload == previous_payload) // checks if 1 is not sent after 0 and vice versa
         {
             printf("Error: Invalid transition. Payload value did not change (stayed at %d).\n", current_payload);
         }
