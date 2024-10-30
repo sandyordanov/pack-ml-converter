@@ -20,6 +20,9 @@ def input_console():
         data_var = Message(name,payload,timestamp)
         # Process the data here
         print("You entered:", data_var.__repr__)
+        # production_line.UpdateNode(data_var)
+
+
 
 def input_jsonFile():
     name = input("What is your name? ")
@@ -58,3 +61,42 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+# #productionLine Object
+# void UpdateNode(Message message)
+# {
+#     For each node in nodes
+#     {
+#         if node.name == message.name
+#             node.UpdateState(message)
+#             PackTagConverter.ConvertNodeToPacktag(node)
+#     }
+#     #error handling
+# }
+
+
+# #PackTagConverter Object
+# ConvertNodeToPacktag(node)
+# {
+    
+# }
+
+
+# #Node Object
+# UpdateState(Message message)
+# {
+
+#     #insert logic
+
+
+
+
+#     CalculateTime()
+# }
+
+# CalculateTime()
+# {
+#     CalculateElapsedTime()
+#     CalculateAverageTime()
+# }
