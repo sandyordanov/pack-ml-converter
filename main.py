@@ -32,7 +32,7 @@ def input_console(production_line):
         print("You entered:", data_var)
 
         # Update the corresponding node in the production line and capture the state
-        current_state = production_line.update_node(data_var)
+        current_state = production_line.UpdateNode(data_var)
         
         # Print the current state if it was successfully updated
         if current_state is not None:
