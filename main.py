@@ -1,42 +1,54 @@
+import json
 from domain.message import Message
 from domain.production_line import ProductionLine
 from domain.node import Node
 
-
 def input_console(production_line):
-    print("Please enter a series of simulated values in the format: <name> <start> <stop> <timestamp>.")
-    print("Use '1' or '0' for start and stop values, and type 'stop' to end the program.")
-
+    print("Please enter a JSON message or type 'stop' to end the program.")
+    prev_start = False
+    prev_stop =  False
     while True:
         user_input = input("Enter your input: ")
 
         if user_input.lower() == 'stop':
             print("Program stopped.")
             break
-        
-        data_splitted = user_input.split()
-        
-        if len(data_splitted) < 4:
-            print("Invalid input format. Please provide <name> <start> <stop> <timestamp>.")
-            continue
 
-        name = data_splitted[0]
-        start = (data_splitted[1] == '1')
-        stop = (data_splitted[2] == '1')
-        timestamp = int(data_splitted[3])
+        try:
+            # Parse JSON input
+            data = json.loads(user_input)
+            
+            # Extract relevant fields
+            data_entity_name = data.get("DataEntityName", "")
+            node_name, action = data_entity_name.split("_")
+            payload = data.get("Payload")  # Get the payload from the JSON
+            timestamp = data.get("Timestamp")
 
-        # Create a Message object with start and stop
-        data_var = Message(name, start, stop, timestamp)
+            # Determine start and stop based on action
+            dataEntity = action.lower()
+            if(dataEntity == "stop"):
+               stop = payload
+               start =  prev_start
+            elif (dataEntity == "start"):
+                start = payload
+                stop = prev_stop
+            
 
-        # Process the data here
-        print("You entered:", data_var)
+            # Create a Message object with the payload included
+            data_var = Message(node_name, start, stop, timestamp, payload)
+            prev_start =  start
+            prev_stop =  stop
+            # Update the corresponding node in the production line
+            current_state = production_line.UpdateNode(data_var)
 
-        # Update the corresponding node in the production line and capture the state
-        current_state = production_line.UpdateNode(data_var)
-        
-        # Print the current state if it was successfully updated
-        if current_state is not None:
-            print(f"Current State of {name}: {current_state}")
+            # Print the current state if it was successfully updated
+            if current_state is not None:
+                print(f"Current State of {node_name}: {current_state}")
+
+        except json.JSONDecodeError:
+            print("Invalid input format. Please enter a valid JSON message.")
+        except ValueError:
+            print("Invalid DataEntityName format. Expected format: '<name>_<action>'.")
 
 
 # The rest of the program remains the same

@@ -60,11 +60,12 @@ class Node:
              # Default back to Idle if no signals and not in Stopped
              self.state = State.Idle
 
-     # Update previous values for the next call
-     self.previous_start = self.start
-     self.previous_stop = self.stop
+    
 
      # Debugging output
      print(f"Previous Start: {self.previous_start}, Previous Stop: {self.previous_stop}")
      print(f"Current State: {self.state}")
+      # Update previous values for the next call
+     self.previous_start = self.start
+     self.previous_stop = self.stop
      return self.state
