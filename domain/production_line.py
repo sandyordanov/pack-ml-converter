@@ -1,18 +1,18 @@
 from domain.message import Message
 from domain.node import Node
 from domain.states import State
-from output import PackTagConverter 
+from processing.packtag_converter import PackTagConverter
 
 
 class ProductionLine:
     def __init__(self):
-        self.nodes
+        self.nodes = []
 
-def add_node(self, node):
+    def add_node(self, node):
         # Method to add nodes to the production line
         self.nodes.append(node)
 
-def UpdateNode(self, message: Message):
+    def UpdateNode(self, message: Message):
         node_found = False  # Flag to track if a matching node is found
         
         for node in self.nodes:
