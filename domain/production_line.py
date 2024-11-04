@@ -20,20 +20,20 @@ class ProductionLine:
                 node_found = True
                 try:
                     # Attempt to update the node's state
-                    node.UpdateState(message)
+                    node.update_state(message)
                 except Exception as e:
                     print(f"Error updating node '{node.name}': {e}")
                     return  # Exit or skip further processing on failure
 
-                try:
-                    # Attempt to convert the node to a PackML tag
-                    PackTagConverter.ConvertNodeToPacktag(node)
-                except Exception as e:
-                    print(f"Error converting node '{node.name}' to PackTag: {e}")
-                    return  # Exit or log the failure, depending on criticality
+                # try:
+                #     # Attempt to convert the node to a PackML tag
+                #     PackTagConverter.ConvertNodeToPacktag(node)
+                # except Exception as e:
+                #     print(f"Error converting node '{node.name}' to PackTag: {e}")
+                #     return  # Exit or log the failure, depending on criticality
                 
-                # Successfully updated and converted, so break out of loop
-                break
+                # # Successfully updated and converted, so break out of loop
+                # break
 
         if not node_found:
             print(f"No node found with the name '{message.name}'.")
