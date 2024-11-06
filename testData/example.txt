@@ -1,0 +1,6 @@
+{"DataEntityName":"n105_Start","Payload":0,"PayloadModelName":"bool","PayloadModelVersion" :"","Timestamp":1717144039141,"version":"1.0.0"}
+{"DataEntityName":"n105_Stop","Payload":0,"PayloadModelName":"bool","PayloadModelVersion" :"","Timestamp":1717144039142,"version":"1.0.0"}
+{"DataEntityName":"n105_Start","Payload":1,"PayloadModelName":"bool","PayloadModelVersion" :"","Timestamp":1717144039141,"version":"1.0.0"}
+{"DataEntityName":"n105_Start","Payload":0,"PayloadModelName":"bool","PayloadModelVersion" :"","Timestamp":1717144039141,"version":"1.0.0"}
+{"DataEntityName":"n105_Stop","Payload":1,"PayloadModelName":"bool","PayloadModelVersion" :"","Timestamp":1717144039141,"version":"1.0.0"}
+{"DataEntityName":"n105_Stop","Payload":0,"PayloadModelName":"bool","PayloadModelVersion" :"","Timestamp":1717144039141,"version":"1.0.0"}
