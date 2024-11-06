@@ -12,7 +12,7 @@ class ProductionLine:
         # Method to add nodes to the production line
         self.nodes.append(node)
 
-    def UpdateNode(self, message: Message):
+    def update_node(self, message: Message):
         node_found = False  # Flag to track if a matching node is found
         
         for node in self.nodes:
