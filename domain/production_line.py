@@ -2,6 +2,8 @@ from domain.message import Message
 from domain.node import Node
 from domain.states import State
 from processing.packtag_converter import PackTagConverter
+from output.output_processor import OutputProcessor
+from domain.pack_tag import PackTag
 
 
 class ProductionLine:
@@ -25,15 +27,25 @@ class ProductionLine:
                     print(f"Error updating node '{node.name}': {e}")
                     return  # Exit or skip further processing on failure
 
-                # try:
-                #     # Attempt to convert the node to a PackML tag
-                #     PackTagConverter.ConvertNodeToPacktag(node)
-                # except Exception as e:
-                #     print(f"Error converting node '{node.name}' to PackTag: {e}")
-                #     return  # Exit or log the failure, depending on criticality
-                
-                # # Successfully updated and converted, so break out of loop
-                # break
+                try:
+                    # Attempt to convert the node to a PackML tag
+                    tag = PackTag(node.name,node.state)
+                    output_processor = OutputProcessor()
+                    output_processor.write_to_file(tag, 'output.txt')
+                except Exception as e:
+                    print(f"Error converting node '{node.name}' to PackTag: {e}")
+                    return  # Exit or log the failure, depending on criticality
+
+                # Successfully updated and converted, so break out of loop
+                break
 
         if not node_found:
             print(f"No node found with the name '{message.name}'.")
+
+    def update_node2(self, message: Message):
+        for node in self.nodes:
+            if node.name == message.name:
+                node_found = True
+                node.update_state(message)
+                tag = PackTagConverter.convert_node(node)
+                return tag

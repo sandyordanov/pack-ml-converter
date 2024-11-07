@@ -3,6 +3,7 @@ from domain.message import Message
 from domain.production_line import ProductionLine
 from domain.node import Node
 from input.file_input import FileInput
+from output.output_processor import OutputProcessor
 
 def input_console(production_line):
     print("Please enter a JSON message or type 'stop' to end the program.")
@@ -39,12 +40,13 @@ def input_console(production_line):
             prev_start =  start
             prev_stop =  stop
             # Update the corresponding node in the production line
-            current_state = production_line.update_node(data_var)
+            tag = production_line.update_node(data_var)
 
             # Print the current state if it was successfully updated
-            if current_state is not None:
-                print(f"Current State of {node_name}: {current_state}")
-
+            if tag is not None:
+                print(f"Current State of {node_name}: {tag.state}")
+                output_procesor = OutputProcessor()
+                output_procesor.write_to_file(tag,'output.txt')
         except json.JSONDecodeError:
             print("Invalid input format. Please enter a valid JSON message.")
         except ValueError:
@@ -55,8 +57,14 @@ def main():
     production_line = ProductionLine()
 
     # Example of adding nodes
-    production_line.add_node(Node(name="n105"))  # Add node n105
-    # You can add more nodes as needed
+    production_line.add_node(Node(name="n105"))
+    production_line.add_node(Node(name="n115"))
+    production_line.add_node(Node(name="n120"))
+    production_line.add_node(Node(name="n125"))
+    production_line.add_node(Node(name="n135"))
+    production_line.add_node(Node(name="n140"))
+    production_line.add_node(Node(name="n145"))
+    production_line.add_node(Node(name="n160"))
 
     while True:
         print("\n---//PackML Converter\\---")
