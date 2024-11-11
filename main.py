@@ -5,6 +5,7 @@ from domain.stage import Stage
 from input.file_input import FileInput
 from output.output_processor import OutputProcessor
 
+
 def input_console(production_line):
     print("Please enter a JSON message or type 'stop' to end the program.")
     while True:
@@ -29,6 +30,60 @@ def input_console(production_line):
             print("Invalid input format. Please enter a valid JSON message.")
         except ValueError:
             print("Invalid DataEntityName format. Expected format: '<name>_<action>'.")
+
+import json
+import time
+from input.file_input import FileInput  # Ensure FileInput is properly implemented and imported
+from domain.message import Message
+from output.output_processor import OutputProcessor
+
+def automatic_input_console(production_line):
+    print("Running Script")
+    prev_start = False
+    prev_stop = False
+    file_reader = FileInput('example.txt')
+    
+    for line in file_reader.read_lines_with_delay():
+        try:
+            # Parse the line as JSON to get a dictionary
+            data = json.loads(line)
+
+            # Extract relevant fields from the JSON data
+            data_entity_name = data.get("DataEntityName", "")
+            node_name, action = data_entity_name.split("_")
+            payload = data.get("Payload")
+            timestamp = data.get("Timestamp")
+
+            # Determine start and stop based on action
+            data_entity = action.lower()
+            if data_entity == "stop":
+                stop = payload
+                start = prev_start
+            elif data_entity == "start":
+                start = payload
+                stop = prev_stop
+
+            # Create a Message object with the payload included
+            data_var = Message(node_name, start, stop, timestamp, payload)
+            prev_start = start
+            prev_stop = stop
+
+            # Update the corresponding node in the production line
+            tag = production_line.update_node(data_var)
+            if tag is not None:
+                print(f"Current State of {node_name}: {tag.state}")
+                
+                # Instantiate OutputProcessor and write to file
+                output_processor = OutputProcessor()
+                output_processor.write_to_file(tag, 'output.txt')
+
+        except json.JSONDecodeError:
+            print("Error: Line is not a valid JSON format.")
+        except ValueError:
+            print("Error: Invalid DataEntityName format. Expected format: '<name>_<action>'.")
+        except Exception as e:
+            print(f"An unexpected error occurred: {e}")
+
 
 
 def main():
@@ -57,13 +112,11 @@ def main():
         if choice == '1':
             input_console(production_line)  # Pass the production_line argument
         elif choice == '2':
-            message_creator = MessageCreator()
-            message_creator.get_messages_continually()
+            pass
+            #message_creator = MessageCreator()
+            #message_creator.get_messages_continually()
         elif choice == '3':
-            file_reader = FileInput('example.txt')
-
-            for line in file_reader.read_lines_with_delay():
-                print(line)  # Or process the line in some other way
+            automatic_input_console(production_line)
         elif choice == '4':
 
             break

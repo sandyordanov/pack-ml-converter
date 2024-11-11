@@ -54,7 +54,7 @@ class Stage:
      else:
          if self.state == State.Execute:
              # If neither start nor stop is true while executing, transition to Complete
-             self.state = State.Stopping
+             self.state = State.Idle
          elif self.state != State.Stopped:
              # Default back to Idle if no signals and not in Stopped
              self.state = State.Idle
