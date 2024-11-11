@@ -20,7 +20,7 @@ def main():
 
         elif choice == '3':
             file_input = FileInput()
-            file_input.input_file()
+            file_input.automatic_input_console()
         elif choice == '4':
 
             break

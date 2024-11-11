@@ -3,7 +3,7 @@ import json
 
 class ConsoleInput(Input):
     def __init__(self):
-        pass
+        super().__init__()
 
     def input_console(self):
         print("Please enter a JSON message or type 'stop' to end the program.")

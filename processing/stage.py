@@ -1,7 +1,7 @@
-from domain.states import State
+from domain.state import State
 import time
 class Stage:
-    def __init__(self, name, state=State.Off):
+    def __init__(self, name, state=State.Idle):
         self.name = name
         self.start = False
         self.stop = False

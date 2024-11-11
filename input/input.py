@@ -1,6 +1,7 @@
 from processing.message import Message
 from processing.production_line import ProductionLine
 from processing.stage import Stage
+from processing.packtag_converter import PackTagConverter
 
 
 
@@ -22,8 +23,10 @@ class Input:
 
     def process_data(self, input):
         message = Message()
+        packtag_converter = PackTagConverter()
         message.parse_incoming_data(input)
 
         stage_updated = self.production_line.update_stage(message)
+        packtag_converter.convert_stage_to_packtag(stage_updated)
 
         #add output logic

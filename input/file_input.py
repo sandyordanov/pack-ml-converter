@@ -7,6 +7,7 @@ class FileInput(Input):
     def __init__(self, file_name):
         # Construct the file path to the testData folder
         self.file_path = os.path.join("testData", file_name)
+        super().__init__()
 
     def automatic_input_console(self):
         print("Running Script")
