@@ -1,6 +1,6 @@
 from domain.states import State
-
-class Node:
+import time
+class Stage:
     def __init__(self, name, state=State.Off):
         self.name = name
         self.start = False
@@ -10,20 +10,19 @@ class Node:
         self.previous_start = False
         self.previous_stop = False
         self.previous_time = None
+        self.execute_time = None
 
     def calculate_time(self, current_time):
-        """Calculate the elapsed time since the last timestamp."""
         if self.previous_time is not None:
             elapsed_time = current_time - self.previous_time
             print(f"Elapsed Time: {elapsed_time} seconds")
             return elapsed_time
+
         else:
             print("No previous timestamp to calculate elapsed time.")
             return None
 
     def update_state(self, message):
-     """Update the state of the node based on the incoming message."""
-     # Calculate elapsed time using the timestamp from the message
      elapsed_time = self.calculate_time(message.timestamp)
 
      # Update previous_time with the current message's timestamp

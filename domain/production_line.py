@@ -1,5 +1,5 @@
 from domain.message import Message
-from domain.node import Node
+from domain.stage import stage
 from domain.states import State
 from processing.packtag_converter import PackTagConverter
 from output.output_processor import OutputProcessor
@@ -8,44 +8,33 @@ from domain.pack_tag import PackTag
 
 class ProductionLine:
     def __init__(self):
-        self.nodes = []
+        self.stages = []
 
-    def add_node(self, node):
-        # Method to add nodes to the production line
-        self.nodes.append(node)
+    def add_stage(self, stage):
+        self.stages.append(stage)
 
-    def update_node(self, message: Message):
-        node_found = False  # Flag to track if a matching node is found
+    def update_stage(self, message: Message):
+        stage_found = False
         
-        for node in self.nodes:
-            if node.name == message.name:
-                node_found = True
+        for stage in self.stages:
+            if stage.name == message.stage_name:
+                stage_found = True
                 try:
-                    # Attempt to update the node's state
-                    node.update_state(message)
+                    stage.update_state(message)
+                    return stage
                 except Exception as e:
-                    print(f"Error updating node '{node.name}': {e}")
+                    print(f"Error updating stage '{stage.name}': {e}")
                     return  # Exit or skip further processing on failure
 
-                try:
-                    # Attempt to convert the node to a PackML tag
-                    tag = PackTag(node.name,node.state)
-                    output_processor = OutputProcessor()
-                    output_processor.write_to_file(tag, 'output.txt')
-                except Exception as e:
-                    print(f"Error converting node '{node.name}' to PackTag: {e}")
-                    return  # Exit or log the failure, depending on criticality
-
-                # Successfully updated and converted, so break out of loop
                 break
 
-        if not node_found:
-            print(f"No node found with the name '{message.name}'.")
+        if not stage_found:
+            print(f"No stage found with the name '{message.stage_name}'.")
 
-    def update_node2(self, message: Message):
-        for node in self.nodes:
-            if node.name == message.name:
-                node_found = True
-                node.update_state(message)
-                tag = PackTagConverter.convert_node(node)
+    def update_stage2(self, message: Message):
+        for stage in self.stages:
+            if stage.name == message.name:
+                stage_found = True
+                stage.update_state(message)
+                tag = PackTagConverter.convert_stage(stage)
                 return tag

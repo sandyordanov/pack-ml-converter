@@ -1,14 +1,12 @@
 import json
 from domain.message import Message
 from domain.production_line import ProductionLine
-from domain.node import Node
+from domain.stage import Stage
 from input.file_input import FileInput
 from output.output_processor import OutputProcessor
 
 def input_console(production_line):
     print("Please enter a JSON message or type 'stop' to end the program.")
-    prev_start = False
-    prev_stop =  False
     while True:
         user_input = input("Enter your input: ")
 
@@ -17,30 +15,10 @@ def input_console(production_line):
             break
 
         try:
-            # Parse JSON input
-            data = json.loads(user_input)
+            message = Message()
+            message.parse_incoming_data(user_input)
 
-            # Extract relevant fields
-            data_entity_name = data.get("DataEntityName", "")
-            node_name, action = data_entity_name.split("_")
-            payload = data.get("Payload")  # Get the payload from the JSON
-            timestamp = data.get("Timestamp")
-
-            # Determine start and stop based on action
-            dataEntity = action.lower()
-            if(dataEntity == "stop"):
-               stop = payload
-               start =  prev_start
-            elif (dataEntity == "start"):
-                start = payload
-                stop = prev_stop
-
-            # Create a Message object with the payload included
-            data_var = Message(node_name, start, stop, timestamp, payload)
-            prev_start =  start
-            prev_stop =  stop
-            # Update the corresponding node in the production line
-            tag = production_line.update_node(data_var)
+            stage_updated = production_line.update_stage(message)
 
             # Print the current state if it was successfully updated
             if tag is not None:
@@ -57,14 +35,14 @@ def main():
     production_line = ProductionLine()
 
     # Example of adding nodes
-    production_line.add_node(Node(name="n105"))
-    production_line.add_node(Node(name="n115"))
-    production_line.add_node(Node(name="n120"))
-    production_line.add_node(Node(name="n125"))
-    production_line.add_node(Node(name="n135"))
-    production_line.add_node(Node(name="n140"))
-    production_line.add_node(Node(name="n145"))
-    production_line.add_node(Node(name="n160"))
+    production_line.add_stage(Stage(name="n105"))
+    production_line.add_stage(Stage(name="n115"))
+    production_line.add_stage(Stage(name="n120"))
+    production_line.add_stage(Stage(name="n125"))
+    production_line.add_stage(Stage(name="n135"))
+    production_line.add_stage(Stage(name="n140"))
+    production_line.add_stage(Stage(name="n145"))
+    production_line.add_stage(Stage(name="n160"))
 
     while True:
         print("\n---//PackML Converter\\---")
