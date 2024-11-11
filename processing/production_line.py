@@ -1,5 +1,5 @@
-from domain.message import Message
-from domain.stage import stage
+from processing.message import Message
+from processing.stage import Stage
 from domain.states import State
 from processing.packtag_converter import PackTagConverter
 from output.output_processor import OutputProcessor

@@ -1,6 +1,6 @@
-from domain.message import Message
-from domain.production_line import ProductionLine
-from domain.stage import Stage
+from processing.message import Message
+from processing.production_line import ProductionLine
+from processing.stage import Stage
 
 
 
