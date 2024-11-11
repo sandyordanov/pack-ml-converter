@@ -13,17 +13,17 @@ class PackTagConverter:
 
         # Convert PackTag instance to JSON-compatible format (dictionary)
         pack_tag_data = {
-            "name": stage.name,  # Replace with actual name if available
+            "name": stage.name,
             "command": {
                 "UnitMode": None,
-                "UnitModeChangeRequest": None,  # Example mapping; adapt based on requirements
+                "UnitModeChangeRequest": None,  
                 "MachSpeed": None,
                 "CntrlCmd": None,
                 "CmdChangeRequest": None
             },
             "status": {
-                "UnitModeCurrent": None,  # Using `state` from Stage, if relevant
-                "StateCurrent": state_name,  # Convert enum state to string (name of the enum member)
+                "UnitModeCurrent": None,  
+                "StateCurrent": state_name,  
                 "MachSpeed": None,
                 "CurMachSpeed": None,
                 "EquipmentInterlock.Blocked": None,
@@ -51,3 +51,5 @@ class PackTagConverter:
         # Write the JSON data to the file
         with open(output_file_path, 'w') as output_file:
             output_file.write(pack_tag_json)
+
+        return pack_tag_json
