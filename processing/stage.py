@@ -1,6 +1,14 @@
 from domain.state import State
 import time
+"""
+Created by 
+Summary: Class that updates PackML state of a stage, as well as calculate time.
+"""
+
 class Stage:
+
+#written by Merna
+
     def __init__(self, name, state=State.Idle):
         self.name = name
         self.start = False
@@ -11,7 +19,7 @@ class Stage:
         self.previous_stop = False
         self.previous_time = None
         self.execute_time = None
-
+    #Created by
     def calculate_time(self, current_time):
         if self.previous_time is not None:
             elapsed_time = current_time - self.previous_time
@@ -21,7 +29,7 @@ class Stage:
         else:
             print("No previous timestamp to calculate elapsed time.")
             return None
-
+    #Created by
     def update_state(self, message):
      elapsed_time = self.calculate_time(message.timestamp)
 

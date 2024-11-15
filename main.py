@@ -19,7 +19,7 @@ def main():
             pass
 
         elif choice == '3':
-            file_input = FileInput()
+            file_input = FileInput("example.txt")
             file_input.automatic_input_console()
         elif choice == '4':
 

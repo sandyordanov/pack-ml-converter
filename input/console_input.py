@@ -1,10 +1,14 @@
 from input.input import Input
 import json
-
+"""
+Created by Aga Henriquez
+Summary: child class that is called when inputting data from command line
+"""
 class ConsoleInput(Input):
     def __init__(self):
         super().__init__()
 
+    #Created by
     def input_console(self):
         print("Please enter a JSON message or type 'stop' to end the program.")
         while True:
