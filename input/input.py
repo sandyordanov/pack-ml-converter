@@ -2,7 +2,7 @@ from processing.message import Message
 from processing.production_line import ProductionLine
 from processing.stage import Stage
 from processing.packtag_converter import PackTagConverter
-
+from output.output_processor import OutputProcessor
 
 
 class Input:
@@ -27,6 +27,8 @@ class Input:
         message.parse_incoming_data(input)
 
         stage_updated = self.production_line.update_stage(message)
-        packtag_converter.convert_stage_to_packtag(stage_updated)
-
+        packtag = packtag_converter.convert_stage_to_packtag(stage_updated)
+        output_processor.write_to_file(packtag)
+        #output_processor.write_to_kafka(packtag)
+        #output_processor.write_to_console(packtag)
         #add output logic

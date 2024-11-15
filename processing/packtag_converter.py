@@ -3,11 +3,14 @@ import json
 import os
 
 class PackTagConverter:
+
+    #written by Aga
+    
     def __init__(self):
         pass
 
 
-    def convert_stage_to_packtag(self, stage):
+    def convert_stage_to_packtag(self, stage): # converts update stage info to packtag
         # Convert enum state to its name (string representation of the enum member)
         state_name = stage.state.name if isinstance(stage.state, State) else str(stage.state)
 
@@ -38,18 +41,4 @@ class PackTagConverter:
 
                # Convert to JSON string
         pack_tag_json = json.dumps(pack_tag_data, indent=4)  # Adding indent for better readability
-
-        # Debug output (to the console)
-        print(f"Converted JSON PackTag: {pack_tag_json}")
-
-        # Write the JSON string to the output file
-        output_file_path = './testData/output.txt'
-
-        # Ensure the directory exists before writing
-        os.makedirs(os.path.dirname(output_file_path), exist_ok=True)
-
-        # Write the JSON data to the file
-        with open(output_file_path, 'w') as output_file:
-            output_file.write(pack_tag_json)
-
         return pack_tag_json

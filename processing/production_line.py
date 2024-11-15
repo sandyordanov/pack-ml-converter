@@ -6,13 +6,15 @@ from output.output_processor import OutputProcessor
 
 
 class ProductionLine:
+    #written by Dion
+
     def __init__(self):
         self.stages = []
 
     def add_stage(self, stage):
         self.stages.append(stage)
 
-    def update_stage(self, message: Message):
+    def update_stage(self, message: Message): # searches stagename and forwards the stage to update_state function.
         stage_found = False
         
         for stage in self.stages:

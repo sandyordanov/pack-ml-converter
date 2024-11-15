@@ -1,6 +1,9 @@
 from domain.state import State
 import time
 class Stage:
+
+#written by Merna
+
     def __init__(self, name, state=State.Idle):
         self.name = name
         self.start = False
