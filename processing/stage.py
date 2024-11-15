@@ -6,7 +6,9 @@ Summary: Class that updates PackML state of a stage, as well as calculate time.
 """
 
 class Stage:
-    #Created by
+
+#written by Merna
+
     def __init__(self, name, state=State.Idle):
         self.name = name
         self.start = False

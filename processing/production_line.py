@@ -10,6 +10,8 @@ Summary: class that holds a list of all stages of a production line.
 """
 
 class ProductionLine:
+    #written by Dion
+
     def __init__(self):
         self.stages = []
 
@@ -18,7 +20,7 @@ class ProductionLine:
         self.stages.append(stage)
 
     #Created by
-    def update_stage(self, message: Message):
+    def update_stage(self, message: Message): # searches stagename and forwards the stage to update_state function.
         stage_found = False
         
         for stage in self.stages:
