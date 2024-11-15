@@ -1,4 +1,9 @@
 from enum import Enum
+"""
+Created by 
+Summary: Enumaration list of all possible PackML States
+         *Please see documentation for further expanation*
+"""
 
 # class syntax
 class State(Enum):

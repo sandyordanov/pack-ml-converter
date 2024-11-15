@@ -2,11 +2,16 @@ from domain.state import State
 import json
 import os
 
+"""
+Created by Aga Henriquez
+Summary: Class in charge of converting a Stage Object into a JSON Object
+"""
+
 class PackTagConverter:
     def __init__(self):
         pass
 
-
+    #Created by Aga Henriquez
     def convert_stage_to_packtag(self, stage):
         # Convert enum state to its name (string representation of the enum member)
         state_name = stage.state.name if isinstance(stage.state, State) else str(stage.state)

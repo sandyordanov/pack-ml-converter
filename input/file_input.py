@@ -2,13 +2,17 @@ import os
 import time
 from input.input import Input
 import json
-
+"""
+Created by Aga Henriquez
+Summary: child class that is called when inputting data from a file
+"""
 class FileInput(Input):
     def __init__(self, file_name):
         # Construct the file path to the testData folder
         self.file_path = os.path.join("testData", file_name)
         super().__init__()
 
+    #Created by
     def automatic_input_console(self):
         print("Running Script")
         file_reader = FileInput('example.txt')
@@ -26,6 +30,7 @@ class FileInput(Input):
             except Exception as e:
                 print(f"An unexpected error occurred: {e}")
 
+    #Created by
     def read_lines_with_delay(self):
         try:
             with open(self.file_path, 'r') as file:
