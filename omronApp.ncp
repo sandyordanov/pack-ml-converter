@@ -5,35 +5,34 @@
     <Language>CSharp</Language>
     <Entities>
       <Entity type="Class">
-        <Name>Node</Name>
+        <Name>Stage</Name>
         <Access>Public</Access>
         <Location left="484" top="640" />
-        <Size width="205" height="289" />
+        <Size width="205" height="315" />
         <Collapsed>False</Collapsed>
         <Member type="Field">string name</Member>
         <Member type="Field">bool start</Member>
         <Member type="Field">bool stop</Member>
+        <Member type="Field">bool error</Member>
         <Member type="Field">State state</Member>
-        <Member type="Field">Time latestExecuteTime</Member>
-        <Member type="Field">Time startTime</Member>
-        <Member type="Field">Time stopTime</Member>
-        <Member type="Field">List&lt;Time&gt; averageExecutionTime</Member>
-        <Member type="Constructor">public Node()</Member>
-        <Member type="Method">public State UpdateState()</Member>
-        <Member type="Method">public void CalculateElapsedTime()</Member>
+        <Member type="Field">time previous_time</Member>
+        <Member type="Field">time execute_time</Member>
+        <Member type="Field">State previous_start</Member>
+        <Member type="Field">State previous_stop</Member>
+        <Member type="Constructor">public Stage()</Member>
+        <Member type="Method">public State update_state()</Member>
+        <Member type="Method">public void calculate_time()</Member>
         <Modifier>None</Modifier>
       </Entity>
       <Entity type="Class">
         <Name>ProductionLine</Name>
         <Access>Public</Access>
-        <Location left="762" top="640" />
+        <Location left="802" top="712" />
         <Size width="260" height="216" />
         <Collapsed>False</Collapsed>
-        <Member type="Field">string name</Member>
-        <Member type="Field">List&lt;Node&gt; nodes</Member>
-        <Member type="Field">State lineState</Member>
-        <Member type="Method">public void UpdateNode(message Message)</Member>
-        <Member type="Method">public void SendNodeToConverter(Node node)</Member>
+        <Member type="Field">List&lt;Stage&gt; stages</Member>
+        <Member type="Method">public Node add_stage(Stage stage)</Member>
+        <Member type="Method">public void update_stage(message Message)</Member>
         <Modifier>None</Modifier>
       </Entity>
       <Entity type="Enum">
@@ -63,60 +62,61 @@
       <Entity type="Class">
         <Name>Message</Name>
         <Access>Public</Access>
-        <Location left="814" top="942" />
-        <Size width="162" height="128" />
+        <Location left="448" top="1168" />
+        <Size width="252" height="196" />
         <Collapsed>False</Collapsed>
-        <Member type="Field">public string DataEntityName</Member>
-        <Member type="Field">public bool Payload</Member>
-        <Member type="Field">public int Timestamp</Member>
+        <Member type="Field">public string name</Member>
+        <Member type="Field">public bool start</Member>
+        <Member type="Field">bool stop</Member>
+        <Member type="Field">public int timestamp</Member>
+        <Member type="Field">bool payload</Member>
+        <Member type="Method">public void __repr__()</Member>
+        <Member type="Method">public void parse_incomming_data(string inpu_stringt)</Member>
         <Modifier>None</Modifier>
       </Entity>
       <Entity type="Class">
-        <Name>KafkaStream</Name>
+        <Name>Input</Name>
         <Access>Public</Access>
-        <Location left="591" top="1409" />
-        <Size width="162" height="216" />
+        <Location left="830" top="1168" />
+        <Size width="217" height="216" />
         <Collapsed>False</Collapsed>
+        <Member type="Field">public ProductionLine production_line</Member>
+        <Member type="Method">private void create_NX4()</Member>
+        <Member type="Method">public void process_data(string input)</Member>
         <Modifier>None</Modifier>
       </Entity>
       <Entity type="Class">
-        <Name>JsonStream</Name>
+        <Name>FileInput</Name>
         <Access>Public</Access>
-        <Location left="819" top="1409" />
-        <Size width="162" height="216" />
+        <Location left="830" top="1469" />
+        <Size width="199" height="216" />
         <Collapsed>False</Collapsed>
+        <Member type="Constructor">public FileInput(string file_name)</Member>
+        <Member type="Method">public Message read_lines_with_delay()</Member>
         <Modifier>None</Modifier>
       </Entity>
       <Entity type="Class">
-        <Name>ConsoleStream</Name>
+        <Name>ConsoleInput</Name>
         <Access>Public</Access>
-        <Location left="1079" top="1409" />
-        <Size width="162" height="216" />
+        <Location left="1079" top="1469" />
+        <Size width="196" height="216" />
         <Collapsed>False</Collapsed>
+        <Member type="Method">public Message input_console()</Member>
         <Modifier>None</Modifier>
-      </Entity>
-      <Entity type="Interface">
-        <Name>InputStream</Name>
-        <Access>Public</Access>
-        <Location left="819" top="1146" />
-        <Size width="162" height="216" />
-        <Collapsed>False</Collapsed>
-        <Member type="Method">Message stream()</Member>
-        <Member type="Method">void subscribe()</Member>
       </Entity>
       <Entity type="Class">
         <Name>PackTagConverter</Name>
         <Access>Public</Access>
-        <Location left="762" top="467" />
+        <Location left="1163" top="734" />
         <Size width="264" height="104" />
         <Collapsed>False</Collapsed>
-        <Member type="Method">public PackTag ConvertNodeToPacktag(Node node)</Member>
+        <Member type="Method">public PackTag convert_stage_to_packtag(Node node)</Member>
         <Modifier>None</Modifier>
       </Entity>
       <Entity type="Class">
         <Name>PackTag</Name>
         <Access>Public</Access>
-        <Location left="484" top="467" />
+        <Location left="1553" top="734" />
         <Size width="169" height="104" />
         <Collapsed>False</Collapsed>
         <Modifier>None</Modifier>
@@ -124,7 +124,7 @@
       <Entity type="Class">
         <Name>KafkaOutput</Name>
         <Access>Public</Access>
-        <Location left="469" top="11" />
+        <Location left="786" top="375" />
         <Size width="272" height="77" />
         <Collapsed>False</Collapsed>
         <Modifier>None</Modifier>
@@ -132,7 +132,7 @@
       <Entity type="Class">
         <Name>CsvOutput</Name>
         <Access>Public</Access>
-        <Location left="822" top="11" />
+        <Location left="1193" top="289" />
         <Size width="162" height="77" />
         <Collapsed>False</Collapsed>
         <Modifier>None</Modifier>
@@ -140,7 +140,7 @@
       <Entity type="Interface">
         <Name>OutputStream</Name>
         <Access>Public</Access>
-        <Location left="751" top="254" />
+        <Location left="1100" top="451" />
         <Size width="310" height="135" />
         <Collapsed>False</Collapsed>
         <Member type="Method">void publish(PackTag tag)</Member>
@@ -148,86 +148,129 @@
       <Entity type="Class">
         <Name>ConsoleOutput</Name>
         <Access>Public</Access>
-        <Location left="1100" top="11" />
+        <Location left="1530" top="451" />
         <Size width="162" height="77" />
         <Collapsed>False</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>FileInput</Name>
+        <Access>Public</Access>
+        <Location left="1360" top="2602" />
+        <Size width="199" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Constructor">public FileInput(string file_name)</Member>
+        <Member type="Method">public Message read_lines_with_delay()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>KafkaInput</Name>
+        <Access>Public</Access>
+        <Location left="609" top="1469" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">public void read_from_kafka()</Member>
         <Modifier>None</Modifier>
       </Entity>
     </Entities>
     <Relationships>
       <Relationship type="Association" first="2" second="0">
-        <Label>
-        </Label>
         <StartOrientation>Horizontal</StartOrientation>
         <EndOrientation>Horizontal</EndOrientation>
-        <Direction>Unidirectional</Direction>
-        <AssociationType>Association</AssociationType>
-      </Relationship>
-      <Relationship type="Realization" first="5" second="7">
-        <StartOrientation>Vertical</StartOrientation>
-        <EndOrientation>Vertical</EndOrientation>
-        <BendPoint relativeToStartShape="False">
-          <X>900</X>
-          <Y>1387</Y>
-        </BendPoint>
-      </Relationship>
-      <Relationship type="Realization" first="4" second="7">
-        <StartOrientation>Horizontal</StartOrientation>
-        <EndOrientation>Horizontal</EndOrientation>
-      </Relationship>
-      <Relationship type="Realization" first="6" second="7">
-        <StartOrientation>Horizontal</StartOrientation>
-        <EndOrientation>Horizontal</EndOrientation>
-      </Relationship>
-      <Relationship type="Association" first="3" second="7">
-        <Label>
-        </Label>
-        <StartOrientation>Vertical</StartOrientation>
-        <EndOrientation>Vertical</EndOrientation>
         <Direction>Unidirectional</Direction>
         <AssociationType>Association</AssociationType>
       </Relationship>
       <Relationship type="Association" first="0" second="1">
-        <Label>
-        </Label>
         <StartOrientation>Horizontal</StartOrientation>
         <EndOrientation>Horizontal</EndOrientation>
         <Direction>Unidirectional</Direction>
         <AssociationType>Association</AssociationType>
       </Relationship>
-      <Relationship type="Realization" first="10" second="12">
-        <StartOrientation>Horizontal</StartOrientation>
-        <EndOrientation>Vertical</EndOrientation>
+      <Relationship type="Realization" first="9" second="11">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>906</X>
+          <Y>492</Y>
+        </BendPoint>
         <BendPoint relativeToStartShape="False">
-          <X>791</X>
-          <Y>220</Y>
+          <X>1040</X>
+          <Y>547</Y>
         </BendPoint>
       </Relationship>
-      <Relationship type="Realization" first="11" second="12">
+      <Relationship type="Realization" first="10" second="11">
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
       </Relationship>
-      <Relationship type="Realization" first="13" second="12">
+      <Relationship type="Realization" first="12" second="11">
         <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>1464</X>
+          <Y>497</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>1447</X>
+          <Y>497</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Association" first="8" second="7">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <BendPoint relativeToStartShape="False">
+          <X>1453</X>
+          <Y>776</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="7" second="11">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Generalization" first="14" second="4">
+        <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <BendPoint relativeToStartShape="True">
-          <X>1034</X>
-          <Y>57</Y>
+          <X>689</X>
+          <Y>1443</Y>
         </BendPoint>
         <BendPoint relativeToStartShape="False">
-          <X>1034</X>
-          <Y>229</Y>
+          <X>929</X>
+          <Y>1409</Y>
         </BendPoint>
       </Relationship>
-      <Relationship type="Association" first="9" second="8">
+      <Relationship type="Generalization" first="5" second="4">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Generalization" first="6" second="4">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="False">
+          <X>929</X>
+          <Y>1410</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Association" first="4" second="3">
         <Label>
         </Label>
         <StartOrientation>Horizontal</StartOrientation>
         <EndOrientation>Horizontal</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>805</X>
+          <Y>1254</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>725</X>
+          <Y>1254</Y>
+        </BendPoint>
         <Direction>Unidirectional</Direction>
         <AssociationType>Association</AssociationType>
       </Relationship>
-      <Relationship type="Association" first="8" second="12">
+      <Relationship type="Association" first="4" second="1">
         <Label>
         </Label>
         <StartOrientation>Vertical</StartOrientation>
@@ -235,15 +278,7 @@
         <Direction>Unidirectional</Direction>
         <AssociationType>Association</AssociationType>
       </Relationship>
-      <Relationship type="Association" first="3" second="1">
-        <Label>
-        </Label>
-        <StartOrientation>Vertical</StartOrientation>
-        <EndOrientation>Vertical</EndOrientation>
-        <Direction>Unidirectional</Direction>
-        <AssociationType>Association</AssociationType>
-      </Relationship>
-      <Relationship type="Association" first="1" second="8">
+      <Relationship type="Association" first="4" second="7">
         <Label>
         </Label>
         <StartOrientation>Vertical</StartOrientation>
