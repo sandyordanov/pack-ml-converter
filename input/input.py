@@ -29,9 +29,9 @@ class Input:
     #Created by
     def process_data(self, input):
         message = Message()
-        packtag_converter = PackTagConverter()
         message.parse_incoming_data(input)
-
+        packtag_converter = PackTagConverter()
+        
         stage_updated = self.production_line.update_stage(message)
         packtag = packtag_converter.convert_stage_to_packtag(stage_updated)
         output_processor.write_to_file(packtag)
