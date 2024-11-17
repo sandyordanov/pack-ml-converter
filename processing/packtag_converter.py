@@ -15,7 +15,7 @@ class PackTagConverter:
     def convert_stage_to_packtag(self, stage):
         # Convert enum state to its name (string representation of the enum member)
         state_name = stage.state.name if isinstance(stage.state, State) else str(stage.state)
-
+        exec_time = stage.execute_time
         # Convert PackTag instance to JSON-compatible format (dictionary)
         pack_tag_data = {
             "name": stage.name,
@@ -28,7 +28,8 @@ class PackTagConverter:
             },
             "status": {
                 "UnitModeCurrent": None,  
-                "StateCurrent": state_name,  
+                "StateCurrent": state_name,
+                "ExecuteTime": exec_time,
                 "MachSpeed": None,
                 "CurMachSpeed": None,
                 "EquipmentInterlock.Blocked": None,

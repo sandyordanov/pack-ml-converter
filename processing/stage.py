@@ -1,5 +1,8 @@
 from domain.state import State
 import time
+
+from tenacity import sleep
+
 """
 Created by 
 Summary: Class that updates PackML state of a stage, as well as calculate time.
@@ -19,6 +22,15 @@ class Stage:
         self.previous_stop = False
         self.previous_time = None
         self.execute_time = None
+
+    def get_execute_time(self):
+        #by Aleksandar
+        while self.state == State.Execute:
+            sleep(1)
+            self.execute_time +=1
+            yield self
+
+
     #Created by
     def calculate_time(self, current_time):
         if self.previous_time is not None:

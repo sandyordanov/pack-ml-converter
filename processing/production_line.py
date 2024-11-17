@@ -28,7 +28,11 @@ class ProductionLine:
                 stage_found = True
                 try:
                     stage.update_state(message)
-                    return stage
+                    if stage.state == State.Execute:
+                       return stage.get_execute_time()
+                    else:
+                        return stage
+
                 except Exception as e:
                     print(f"Error updating stage '{stage.name}': {e}")
                     return  # Exit or skip further processing on failure
@@ -37,12 +41,3 @@ class ProductionLine:
 
         if not stage_found:
             print(f"No stage found with the name '{message.stage_name}'.")
-
-    #Created by
-    def update_stage2(self, message: Message):
-        for stage in self.stages:
-            if stage.name == message.name:
-                stage_found = True
-                stage.update_state(message)
-                tag = PackTagConverter.convert_stage(stage)
-                return tag
