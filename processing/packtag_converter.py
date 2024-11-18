@@ -1,4 +1,5 @@
 from domain.state import State
+from domain.EndCode import EndCode
 import json
 import os
 
@@ -16,6 +17,8 @@ class PackTagConverter:
         # Convert enum state to its name (string representation of the enum member)
         state_name = stage.state.name if isinstance(stage.state, State) else str(stage.state)
         exec_time = stage.execute_time
+        endcode_name = stage.endCode.name if isinstance(stage.endCode, EndCode) else str(stage.endCode)
+
         # Convert PackTag instance to JSON-compatible format (dictionary)
         pack_tag_data = {
             "name": stage.name,
@@ -36,7 +39,7 @@ class PackTagConverter:
                 "EquipmentInterlock.Starved": None
             },
             "admin": {
-                "StopReason.ID": None,
+                "StopReason.ID": endcode_name,
                 "ProdProcessedCount[#].Count": None,
                 "ProdDefectiveCount[#].Count": None
             }

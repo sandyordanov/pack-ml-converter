@@ -1,8 +1,4 @@
-from processing.message import Message
-from processing.stage import Stage
-from domain.state import State
-from processing.packtag_converter import PackTagConverter
-from output.output_processor import OutputProcessor
+from processing.parser import Parser
 
 """
 Created by 
@@ -20,7 +16,7 @@ class ProductionLine:
         self.stages.append(stage)
 
     #Created by
-    def update_stage(self, message: Message): # searches stagename and forwards the stage to update_state function.
+    def update_stage(self, message: Parser): # searches stagename and forwards the stage to update_state function.
         stage_found = False
         
         for stage in self.stages:

@@ -5,7 +5,7 @@ Created by
 Summary: class that parses and stores incoming data for processing
 """
 
-class Message:
+class Parser:
     def __init__(self):
         self.stage_name = None
         self.start = False

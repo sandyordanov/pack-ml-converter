@@ -1,6 +1,6 @@
 from enum import Enum
 
-class errorCause(Enum):
+class EndCode(Enum):
     Receive_Tasklist_TimeOut =2
     Product_Not_Valid=3
     Operation_Cancelled = 4
