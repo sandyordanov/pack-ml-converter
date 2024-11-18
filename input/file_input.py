@@ -21,7 +21,7 @@ class FileInput(Input):
             try:
                 # Parse the line as JSON to get a dictionary
                 file_data = json.loads(line)
-                self.process_data(file_data)
+                self.send_to_parser(file_data)
 
             except json.JSONDecodeError:
                 print("Error: Line is not a valid JSON format.")
