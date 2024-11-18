@@ -3,6 +3,8 @@ from faststream import FastStream
 from faststream.kafka import KafkaBroker
 import json
 
+# created by Dion
+
 class KafkaInput(Input):
     def __init__(self):
         super().__init__()
@@ -18,6 +20,6 @@ async def start_processing(self):
         async def process_kafka_message(self, message):
                 """Process Kafka message and call self.process_data directly."""
                     # Call the custom method to process the data
-                self.process_data(self,message)
+                self.send_to_parser(self,message)
 #         @broker.subscriber("omron.packaging.nx-3.teststation.plc.Status.StateCurrent")
 #         @broker.publisher("omron.packaging.nx-3.teststation.packml.Status.StateCurrentStr")

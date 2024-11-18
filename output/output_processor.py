@@ -7,17 +7,17 @@ import json
 Created by 
 Summary: Class in charge of outputting JSON object to selected output destination
 """
-
+  #Created by Dion
 class OutputProcessor:
     def __init__(self):
         pass
 
-    #Created by
+  
     def write_to_console(self, data):
         # Output to console
         print(f"Converted JSON PackTag: {data.json()}")
 
-    #written by Dion
+
     def write_to_file(self, pack_tag_json): # writes packtag to specific file
 
         output_file_path = './testData/output.txt'
