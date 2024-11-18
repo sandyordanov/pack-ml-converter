@@ -63,16 +63,17 @@ class Stage:
          if self.state == State.Execute:
              # If neither start nor stop is true while executing, transition to Complete
              self.state = State.Idle
-         elif self.state != State.Stopped:
+         elif self.state == State.Stopped:
              # Default back to Idle if no signals and not in Stopped
              self.state = State.Idle
 
     
 
      # Debugging output
-     print(f"Previous Start: {self.previous_start}, Previous Stop: {self.previous_stop}")
-     print(f"Current State: {self.state}")
+     
       # Update previous values for the next call
      self.previous_start = self.start
      self.previous_stop = self.stop
+     print(f"Previous Start: {self.previous_start}, Previous Stop: {self.previous_stop}")
+     print(f"Current State: {self.state}")
      return self.state
