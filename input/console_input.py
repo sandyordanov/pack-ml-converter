@@ -8,7 +8,7 @@ class ConsoleInput(Input):
     def __init__(self):
         super().__init__()
 
-    #Created by
+    #Created by Aleksandar
     def input_console(self):
         print("Please enter a JSON message or type 'stop' to end the program.")
         while True:
@@ -19,7 +19,8 @@ class ConsoleInput(Input):
                 break
 
             try:
-                self.process_data(user_input)
+                parsed_data = self.send_to_parser(user_input)
+                return parsed_data
 
             except json.JSONDecodeError:
                 print("Invalid input format. Please enter a valid JSON message.")
