@@ -32,9 +32,11 @@ class Input:
         message.parse_incoming_data(input)
         packtag_converter = PackTagConverter()
         
+        output = OutputProcessor()
+        
         stage_updated = self.production_line.update_stage(message)
         packtag = packtag_converter.convert_stage_to_packtag(stage_updated)
-        output_processor.write_to_file(packtag)
+        output.write_to_file(packtag)
         #output_processor.write_to_kafka(packtag)
-        #output_processor.write_to_console(packtag)
+        output.write_to_console(packtag)
         #add output logic

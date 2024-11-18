@@ -1,5 +1,6 @@
 from input.file_input import FileInput
 from input.console_input import ConsoleInput
+from input.kafka_input import Kafka_Input
 
 def main():
     while True:
@@ -16,6 +17,7 @@ def main():
             console_input = ConsoleInput()
             console_input.input_console()
         elif choice == '2':
+            kafka_input = KafkaInput();
             pass
 
         elif choice == '3':
