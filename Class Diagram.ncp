@@ -60,9 +60,9 @@
         <Value>Unsuspending</Value>
       </Entity>
       <Entity type="Class">
-        <Name>Message</Name>
+        <Name>Parser</Name>
         <Access>Public</Access>
-        <Location left="400" top="1141" />
+        <Location left="404" top="1089" />
         <Size width="282" height="196" />
         <Collapsed>False</Collapsed>
         <Member type="Field">public string name</Member>
@@ -71,24 +71,23 @@
         <Member type="Field">public int timestamp</Member>
         <Member type="Field">bool payload</Member>
         <Member type="Method">public void __repr__()</Member>
-        <Member type="Method">public void parse_incomming_data(string inpu_stringt)</Member>
+        <Member type="Method">public void parse_incoming_data(string input_string)</Member>
         <Modifier>None</Modifier>
       </Entity>
       <Entity type="Class">
         <Name>Input</Name>
         <Access>Public</Access>
-        <Location left="830" top="1122" />
-        <Size width="217" height="216" />
+        <Location left="830" top="1141" />
+        <Size width="243" height="124" />
         <Collapsed>False</Collapsed>
         <Member type="Field">public ProductionLine production_line</Member>
-        <Member type="Method">private void create_NX4()</Member>
-        <Member type="Method">public void process_data(string input)</Member>
+        <Member type="Method">public void send_to_parser(string input_data)</Member>
         <Modifier>None</Modifier>
       </Entity>
       <Entity type="Class">
         <Name>FileInput</Name>
         <Access>Public</Access>
-        <Location left="830" top="1469" />
+        <Location left="830" top="1408" />
         <Size width="199" height="216" />
         <Collapsed>False</Collapsed>
         <Member type="Constructor">public FileInput(string file_name)</Member>
@@ -98,7 +97,7 @@
       <Entity type="Class">
         <Name>ConsoleInput</Name>
         <Access>Public</Access>
-        <Location left="1079" top="1469" />
+        <Location left="1076" top="1408" />
         <Size width="196" height="216" />
         <Collapsed>False</Collapsed>
         <Member type="Method">public Message input_console()</Member>
@@ -150,7 +149,7 @@
       <Entity type="Class">
         <Name>KafkaInput</Name>
         <Access>Public</Access>
-        <Location left="609" top="1469" />
+        <Location left="606" top="1408" />
         <Size width="162" height="216" />
         <Collapsed>False</Collapsed>
         <Member type="Method">public void read_from_kafka()</Member>
@@ -159,7 +158,7 @@
       <Entity type="Class">
         <Name>Main</Name>
         <Access>Public</Access>
-        <Location left="1236" top="950" />
+        <Location left="1237" top="951" />
         <Size width="280" height="216" />
         <Collapsed>False</Collapsed>
         <Member type="Field">ProductionLine productionLine</Member>
@@ -171,7 +170,7 @@
       <Entity type="Enum">
         <Name>endCode</Name>
         <Access>Public</Access>
-        <Location left="509" top="320" />
+        <Location left="509" top="318" />
         <Size width="162" height="216" />
         <Collapsed>False</Collapsed>
         <Value>Not_Active</Value>
@@ -231,12 +230,12 @@
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <BendPoint relativeToStartShape="True">
-          <X>689</X>
-          <Y>1443</Y>
+          <X>686</X>
+          <Y>1382</Y>
         </BendPoint>
         <BendPoint relativeToStartShape="False">
           <X>929</X>
-          <Y>1363</Y>
+          <Y>1290</Y>
         </BendPoint>
       </Relationship>
       <Relationship type="Generalization" first="5" second="4">
@@ -248,7 +247,7 @@
         <EndOrientation>Vertical</EndOrientation>
         <BendPoint relativeToStartShape="False">
           <X>929</X>
-          <Y>1364</Y>
+          <Y>1291</Y>
         </BendPoint>
       </Relationship>
       <Relationship type="Association" first="4" second="3">
@@ -256,11 +255,11 @@
         <EndOrientation>Horizontal</EndOrientation>
         <BendPoint relativeToStartShape="True">
           <X>805</X>
-          <Y>1208</Y>
+          <Y>1227</Y>
         </BendPoint>
         <BendPoint relativeToStartShape="False">
-          <X>707</X>
-          <Y>1227</Y>
+          <X>711</X>
+          <Y>1175</Y>
         </BendPoint>
         <Direction>Unidirectional</Direction>
         <AssociationType>Association</AssociationType>
@@ -271,8 +270,8 @@
         <StartOrientation>Horizontal</StartOrientation>
         <EndOrientation>Horizontal</EndOrientation>
         <BendPoint relativeToStartShape="True">
-          <X>1211</X>
-          <Y>1012</Y>
+          <X>1212</X>
+          <Y>1013</Y>
         </BendPoint>
         <Direction>Unidirectional</Direction>
         <AssociationType>Association</AssociationType>
@@ -283,8 +282,8 @@
         <StartOrientation>Horizontal</StartOrientation>
         <EndOrientation>Horizontal</EndOrientation>
         <BendPoint relativeToStartShape="True">
-          <X>1211</X>
-          <Y>1072</Y>
+          <X>1212</X>
+          <Y>1073</Y>
         </BendPoint>
         <Direction>Unidirectional</Direction>
         <AssociationType>Association</AssociationType>
@@ -295,8 +294,8 @@
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <BendPoint relativeToStartShape="True">
-          <X>1368</X>
-          <Y>925</Y>
+          <X>1369</X>
+          <Y>926</Y>
         </BendPoint>
         <Direction>Unidirectional</Direction>
         <AssociationType>Association</AssociationType>

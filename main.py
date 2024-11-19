@@ -1,13 +1,10 @@
 from input.file_input import FileInput
 from input.console_input import ConsoleInput
-<<<<<<< HEAD
 from input.kafka_input import Kafka_Input
-=======
 from processing.production_line import ProductionLine
 from processing.stage import Stage
 from processing.packtag_converter import PackTagConverter
 from output.output_processor import OutputProcessor
->>>>>>> develop
 
 production_line = ProductionLine()
 
@@ -29,7 +26,8 @@ def main():
             parsed_data = console_input.input_console()
             handle_parsed_data(parsed_data)
         elif choice == '2':
-            kafka_input = KafkaInput();
+            #kafka_input = KafkaInput();
+            
             pass
 
         elif choice == '3':
