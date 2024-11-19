@@ -9,7 +9,7 @@
     },
     "status": {
         "UnitModeCurrent": null,
-        "StateCurrent": "Stopped",
+        "StateCurrent": "Idle",
         "MachSpeed": null,
         "CurMachSpeed": null,
         "EquipmentInterlock.Blocked": null,

@@ -17,7 +17,6 @@ class ConsoleInput(Input):
             if user_input.lower() == 'stop':
                 print("Program stopped.")
                 break
-
             try:
                 self.process_data(user_input)
 

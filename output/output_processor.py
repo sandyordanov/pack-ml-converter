@@ -12,7 +12,7 @@ class OutputProcessor:
     #Created by
     def write_to_console(self, data):
         # Output to console
-        print(f"Converted JSON PackTag: {data.json()}")
+        print(f"Converted JSON PackTag: {data}")
 
     #written by Dion
     def write_to_file(self, pack_tag_json): # writes packtag to specific file
