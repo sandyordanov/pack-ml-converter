@@ -1,6 +1,6 @@
 from enum import Enum
 """
-Created by 
+Created by Aleksandar
 Summary: Enumaration list of all possible PackML States
          *Please see documentation for further expanation*
 """

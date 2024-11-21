@@ -24,11 +24,7 @@ class ProductionLine:
                 stage_found = True
                 try:
                     stage.update_state(message)
-                    if stage.state == State.Execute:
-                       return stage.get_execute_time()
-                    else:
-                        return stage
-
+                    return stage
                 except Exception as e:
                     print(f"Error updating stage '{stage.name}': {e}")
                     return  # Exit or skip further processing on failure

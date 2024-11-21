@@ -12,12 +12,12 @@ class PackTagConverter:
     def __init__(self):
         pass
 
-    #Created by Aga Henriquez
+    # Created by Aga Henriquez
     def convert_stage_to_packtag(self, stage):
         # Convert enum state to its name (string representation of the enum member)
-        state_name = stage.state.name if isinstance(stage.state, State) else str(stage.state)
+        state_name = stage.state.name
         exec_time = stage.execute_time
-        endcode_name = stage.endCode.name if isinstance(stage.endCode, EndCode) else str(stage.endCode)
+      # endcode_name = stage.endCode.name if isinstance(stage.endCode, EndCode) else str(stage.endCode)
 
         # Convert PackTag instance to JSON-compatible format (dictionary)
         pack_tag_data = {
@@ -39,7 +39,7 @@ class PackTagConverter:
                 "EquipmentInterlock.Starved": None
             },
             "admin": {
-                "StopReason.ID": endcode_name,
+                #"StopReason.ID": endcode_name,
                 "ProdProcessedCount[#].Count": None,
                 "ProdDefectiveCount[#].Count": None
             }

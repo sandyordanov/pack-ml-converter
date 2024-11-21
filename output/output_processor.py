@@ -28,6 +28,13 @@ class OutputProcessor:
         with open(output_file_path, 'w') as output_file:
              output_file.write(pack_tag_json)
 
+    def write_runtime_data_to_file(self, pack_tag_json):  # writes packtag to specific file
+
+        output_file_path = './testData/runtime.txt'
+        os.makedirs(os.path.dirname(output_file_path), exist_ok=True)
+
+        with open(output_file_path, 'w') as output_file:
+            output_file.writelines(pack_tag_json)
 
     async def write_to_kafka(self, topic, data):
         try:

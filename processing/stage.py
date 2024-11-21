@@ -23,12 +23,11 @@ class Stage:
         self.previous_time = None
         self.execute_time = None
 
-    def get_execute_time(self):
+    def set_execute_time(self):
         #by Aleksandar
         while self.state == State.Execute:
             sleep(1)
             self.execute_time +=1
-            yield self
 
 
     #Created by
@@ -56,18 +55,22 @@ class Stage:
      if self.start and self.stop:
          # Error condition if both start and stop are active
          self.state = State.Aborted
+         self.execute_time = 0
          self.error = True
      elif self.stop:
          if self.state == State.Stopping:
              # Transition from Execute to Complete after stopping
              self.state = State.Complete
+             self.execute_time = 0
          else:
              # Set state to Stopped when stop is True but not in Execute
              self.state = State.Stopped
+             self.execute_time = 0
      elif self.start:
          if self.state in (State.Idle, State.Stopped):
              # Start operation from Idle or Stopped
              self.state = State.Execute
+             self.set_execute_time()
          elif self.state == State.Execute:
              # Already executing, we could remain in Execute
              pass
@@ -75,9 +78,11 @@ class Stage:
          if self.state == State.Execute:
              # If neither start nor stop is true while executing, transition to Complete
              self.state = State.Idle
+             self.execute_time = 0
          elif self.state == State.Stopped:
              # Default back to Idle if no signals and not in Stopped
              self.state = State.Idle
+             self.execute_time = 0
 
     
 

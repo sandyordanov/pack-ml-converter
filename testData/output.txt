@@ -9,14 +9,14 @@
     },
     "status": {
         "UnitModeCurrent": null,
-        "StateCurrent": "Stopped",
+        "StateCurrent": "Idle",
+        "ExecuteTime": null,
         "MachSpeed": null,
         "CurMachSpeed": null,
         "EquipmentInterlock.Blocked": null,
         "EquipmentInterlock.Starved": null
     },
     "admin": {
-        "StopReason.ID": null,
         "ProdProcessedCount[#].Count": null,
         "ProdDefectiveCount[#].Count": null
     }
