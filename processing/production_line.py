@@ -1,8 +1,4 @@
-from processing.message import Message
-from processing.stage import Stage
-from domain.state import State
-from processing.packtag_converter import PackTagConverter
-from output.output_processor import OutputProcessor
+from processing.parser import Parser
 
 """
 Created by 
@@ -20,7 +16,7 @@ class ProductionLine:
         self.stages.append(stage)
 
     #Created by
-    def update_stage(self, message: Message): # searches stagename and forwards the stage to update_state function.
+    def update_stage(self, message: Parser): # searches stagename and forwards the stage to update_state function.
         stage_found = False
         
         for stage in self.stages:
@@ -37,12 +33,3 @@ class ProductionLine:
 
         if not stage_found:
             print(f"No stage found with the name '{message.stage_name}'.")
-
-    #Created by
-    def update_stage2(self, message: Message):
-        for stage in self.stages:
-            if stage.name == message.name:
-                stage_found = True
-                stage.update_state(message)
-                tag = PackTagConverter.convert_stage(stage)
-                return tag

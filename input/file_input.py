@@ -12,7 +12,7 @@ class FileInput(Input):
         self.file_path = os.path.join("testData", file_name)
         super().__init__()
 
-    #Created by
+    #Created by Aleksandar
     def automatic_input_console(self):
         print("Running Script")
         file_reader = FileInput('example.txt')
@@ -21,7 +21,7 @@ class FileInput(Input):
             try:
                 # Parse the line as JSON to get a dictionary
                 file_data = json.loads(line)
-                self.process_data(file_data)
+                self.send_to_parser(file_data)
 
             except json.JSONDecodeError:
                 print("Error: Line is not a valid JSON format.")
@@ -30,7 +30,7 @@ class FileInput(Input):
             except Exception as e:
                 print(f"An unexpected error occurred: {e}")
 
-    #Created by
+    #Created by Aleksandar
     def read_lines_with_delay(self):
         try:
             with open(self.file_path, 'r') as file:

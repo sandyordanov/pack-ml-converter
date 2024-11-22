@@ -1,15 +1,18 @@
 import os
-
+from input.input import Input
+from faststream import FastStream
+from faststream.kafka import KafkaBroker
+import json
 """
 Created by 
 Summary: Class in charge of outputting JSON object to selected output destination
 """
-
+  #Created by Dion
 class OutputProcessor:
     def __init__(self):
         pass
 
-    #Created by
+  
     def write_to_console(self, data):
         # Output to console
         print(f"Converted JSON PackTag: {data}")
@@ -27,6 +30,17 @@ class OutputProcessor:
 
 
     async def write_to_kafka(self, topic, data):
+        try:
+                    # Ensure data is JSON-formatted
+                    message = json.dumps(data)
+
+                    # Publish the message to the Kafka topic
+                    await self.broker.publish(topic, message)
+
+                    print(f"Message successfully published to topic '{topic}'")
+
+        except Exception as e:
+                    print(f"Error publishing message to Kafka: {e}")
         pass
         # Publish to a Kafka topic
 
