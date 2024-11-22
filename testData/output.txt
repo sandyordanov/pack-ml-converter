@@ -17,6 +17,7 @@
         "EquipmentInterlock.Starved": null
     },
     "admin": {
+        "StopReason.ID": "-1",
         "ProdProcessedCount[#].Count": null,
         "ProdDefectiveCount[#].Count": null
     }

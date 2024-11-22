@@ -4,6 +4,7 @@ from input.kafka_input import KafkaInput
 from processing.production_line import ProductionLine
 from processing.stage import Stage
 from domain.state import State
+from processing.parser import Parser
 from processing.packtag_converter import PackTagConverter
 from output.output_processor import OutputProcessor
 
@@ -30,12 +31,14 @@ def main():
             get_runtime_updates()
         elif choice == '2':
             #kafka_input = KafkaInput();
-            
+
             pass
 
         elif choice == '3':
             file_input = FileInput("example.txt")
-            parsed_data = file_input.automatic_input_console()
+            parser = Parser()
+            raw_data = file_input.automatic_input_console()
+            parsed_data = parser.parse_incoming_data((raw_data))
             handle_parsed_data(parsed_data)
         elif choice == '4':
 
