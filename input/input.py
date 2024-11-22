@@ -15,5 +15,5 @@ class Input:
         parser = Parser()
         parser.parse_incoming_data(raw_data)
 
-        return Parser
+        return parser
 

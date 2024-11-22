@@ -1,8 +1,9 @@
 from input.file_input import FileInput
 from input.console_input import ConsoleInput
-from input.kafka_input import Kafka_Input
+from input.kafka_input import KafkaInput
 from processing.production_line import ProductionLine
 from processing.stage import Stage
+from domain.state import State
 from processing.packtag_converter import PackTagConverter
 from output.output_processor import OutputProcessor
 
@@ -24,7 +25,9 @@ def main():
         if choice == '1':
             console_input = ConsoleInput()
             parsed_data = console_input.input_console()
+
             handle_parsed_data(parsed_data)
+            get_runtime_updates()
         elif choice == '2':
             #kafka_input = KafkaInput();
             
@@ -40,7 +43,14 @@ def main():
         else:
             print("Invalid choice. Please try again.")
 
-
+def get_runtime_updates():
+    packtag_converter = PackTagConverter()
+    output_processor = OutputProcessor()
+    active_stages_tags = []
+    for stage in production_line.stages:
+        if stage.state == State.Execute:
+            active_stages_tags.append(packtag_converter.convert_stage_to_packtag(stage))
+    output_processor.write_runtime_data_to_file(active_stages_tags)
 
 #created by Aga
 def handle_parsed_data(data):

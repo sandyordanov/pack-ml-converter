@@ -2,6 +2,9 @@ from domain.state import State
 from domain.endCode import endCode
 
 import time
+
+from tenacity import sleep
+
 """
 Created by 
 Summary: Class that updates PackML state of a stage, as well as calculate time.
@@ -23,6 +26,14 @@ class Stage:
         self.previous_stop = False
         self.previous_time = None
         self.execute_time = None
+
+    def set_execute_time(self):
+        #by Aleksandar
+        while self.state == State.Execute:
+            sleep(1)
+            self.execute_time +=1
+
+
     #Created by
     def calculate_time(self, current_time):
         if self.previous_time is not None:
@@ -53,20 +64,24 @@ class Stage:
         if self.start and self.stop:
          # Error condition if both start and stop are active
             if self.state == State.Execute:
-             #do nothing 
-                 pass
+                #do nothing 
+                self.execute_time = 0
+                pass
         elif self.stop:
             if self.state ==State.Execute :             
-              self.state = State.Complete
+                self.state = State.Complete
+                self.execute_time = 0
         elif self.start:
             if self.state == State.Idle or self.state == State.Aborted :
-             # Start operation from Idle or Stopped
-                 self.state = State.Execute
+                # Start operation from Idle or Stopped
+                self.state = State.Execute
+                self.set_execute_time()
             elif self.state == State.Execute :
                  # Already executing, we could remain in Execute
-             pass
+                pass
         else:
             self.state = State.Idle
+            self.execute_time = 0
       # Update previous values for the next call
      self.previous_start = self.start
      self.previous_stop = self.stop

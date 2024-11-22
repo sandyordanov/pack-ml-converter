@@ -23,7 +23,8 @@ class Parser:
         data = json.loads(input_string)
 
         data_entity_name = data.get("DataEntityName", "")
-        self.stage_name, action = data_entity_name.split("_")
+        stage_name, action = data_entity_name.split("_")
+        self.stage_name = stage_name
         self.payload = data.get("Payload")
         self.timestamp = data.get("Timestamp")
         #self.endCode = data.get("EndCode")
