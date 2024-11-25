@@ -34,7 +34,7 @@ class Stage:
             self.execute_time +=1
 
 
-    #Created by
+    #Created by Merna
     def calculate_time(self, current_time):
         if self.previous_time is not None:
             elapsed_time = current_time - self.previous_time
@@ -44,7 +44,7 @@ class Stage:
         else:
             print("No previous timestamp to calculate elapsed time.")
             return None
-    #Created by
+    #Created by Merna
     def update_state(self, message):
      
      #elapsed_time = self.calculate_time(message.timestamp)
@@ -58,7 +58,7 @@ class Stage:
      print(f"ERROR : {self.error}")
      # State transition logic
      if self.error:
-        self.endState = endCode
+        self.endState = EndCode
         self.state = State.Aborted
      else:
         if self.start and self.stop:
@@ -71,14 +71,15 @@ class Stage:
             if self.state ==State.Execute :             
                 self.state = State.Complete
                 self.execute_time = 0
+            else:
+               self.state = State.Aborted 
         elif self.start:
             if self.state == State.Idle or self.state == State.Aborted :
                 # Start operation from Idle or Stopped
                 self.state = State.Execute
                 #self.set_execute_time()
             elif self.state == State.Execute :
-                 # Already executing, we could remain in Execute
-                pass
+                self.state = State.Aborted
         else:
             self.state = State.Idle
             self.execute_time = 0
