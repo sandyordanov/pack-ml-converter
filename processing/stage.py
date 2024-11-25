@@ -1,9 +1,9 @@
 from domain.state import State
-from domain.endCode import endCode
+from domain.EndCode import EndCode
 
 import time
 
-from tenacity import sleep
+#from tenacity import sleep
 
 """
 Created by 
@@ -14,7 +14,7 @@ class Stage:
 
 #written by Merna
 
-    def __init__(self, name, state=State.Idle ,endState = endCode.Not_Active):
+    def __init__(self, name, state=State.Idle ,endState = EndCode.Not_Active):
         self.name = name
         self.start = False
         self.stop = False
@@ -27,7 +27,7 @@ class Stage:
         self.previous_time = None
         self.execute_time = None
 
-    def set_execute_time(self):
+    #def set_execute_time(self):
         #by Aleksandar
         while self.state == State.Execute:
             sleep(1)
@@ -55,7 +55,7 @@ class Stage:
 
      # Update start and stop based on the message
      update_start_stop(self, message)
-     print(f"EROOR : {self.error}")
+     print(f"ERROR : {self.error}")
      # State transition logic
      if self.error:
         self.endState = endCode
@@ -64,7 +64,7 @@ class Stage:
         if self.start and self.stop:
          # Error condition if both start and stop are active
             if self.state == State.Execute:
-                #do nothing 
+                self.state = State.Complete
                 self.execute_time = 0
                 pass
         elif self.stop:
@@ -75,7 +75,7 @@ class Stage:
             if self.state == State.Idle or self.state == State.Aborted :
                 # Start operation from Idle or Stopped
                 self.state = State.Execute
-                self.set_execute_time()
+                #self.set_execute_time()
             elif self.state == State.Execute :
                  # Already executing, we could remain in Execute
                 pass
