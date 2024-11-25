@@ -6,7 +6,7 @@ import time
 #from tenacity import sleep
 
 """
-Created by 
+Created by Merna
 Summary: Class that updates PackML state of a stage, as well as calculate time.
 """
 
@@ -71,8 +71,10 @@ class Stage:
             if self.state ==State.Execute :             
                 self.state = State.Complete
                 self.execute_time = 0
+            elif self.state ==State.Complete :
+                pass
             else:
-               self.state = State.Aborted 
+                self.state = State.Aborted
         elif self.start:
             if self.state == State.Idle or self.state == State.Aborted :
                 # Start operation from Idle or Stopped
