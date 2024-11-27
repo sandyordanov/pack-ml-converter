@@ -1,0 +1,24 @@
+{
+    "name": "n105",
+    "command": {
+        "UnitMode": null,
+        "UnitModeChangeRequest": null,
+        "MachSpeed": null,
+        "CntrlCmd": null,
+        "CmdChangeRequest": null
+    },
+    "status": {
+        "UnitModeCurrent": null,
+        "StateCurrent": "Idle",
+        "ExecuteTime": null,
+        "MachSpeed": null,
+        "CurMachSpeed": null,
+        "EquipmentInterlock.Blocked": null,
+        "EquipmentInterlock.Starved": null
+    },
+    "admin": {
+        "StopReason.ID": "-1",
+        "ProdProcessedCount[#].Count": null,
+        "ProdDefectiveCount[#].Count": null
+    }
+}
