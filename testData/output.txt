@@ -1,5 +1,5 @@
 {
-    "name": "n105",
+    "name": "n160",
     "command": {
         "UnitMode": null,
         "UnitModeChangeRequest": null,
@@ -10,7 +10,7 @@
     "status": {
         "UnitModeCurrent": null,
         "StateCurrent": "Idle",
-        "ExecuteTime": null,
+        "ExecuteTime": 0,
         "MachSpeed": null,
         "CurMachSpeed": null,
         "EquipmentInterlock.Blocked": null,

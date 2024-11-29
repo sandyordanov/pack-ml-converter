@@ -36,10 +36,15 @@ def main():
 
         elif choice == '3':
             file_input = FileInput("example.txt")
-            parser = Parser()
-            raw_data = file_input.automatic_input_console()
-            parsed_data = parser.parse_incoming_data((raw_data))
-            handle_parsed_data(parsed_data)
+            
+            for parser_object in file_input.automatic_input_console():  
+                try:
+                    handle_parsed_data(parser_object)
+                except Exception as e:
+                    print(f"Error while processing parsed data: {e}")
+
+       
+                
         elif choice == '4':
 
             break
@@ -64,7 +69,7 @@ def handle_parsed_data(data):
     packtag = packtag_converter.convert_stage_to_packtag(stage_updated)
     output_processor.write_to_file(packtag)
     #output_processor.write_to_kafka(packtag)
-    #output_processor.write_to_console(packtag)
+    output_processor.write_to_console(packtag)
     #add output logic
 
 #created by Aleksander | edited by Aga
