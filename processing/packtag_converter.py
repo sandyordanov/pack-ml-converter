@@ -1,6 +1,5 @@
 from domain.state import State
 from domain.EndCode import EndCode
-import json
 import os
 
 """
@@ -24,9 +23,13 @@ class PackTagConverter:
         endcode_name = stage.endCode.name if isinstance(stage.endCode, EndCode) else str(stage.endCode)
         state_name = stage.state.name if isinstance(stage.state, State) else str(stage.state)
 
+        # Capitalize the state_name
+
+        state_name = state_name.upper()
+
         # Create pack tag data
         pack_tag_data = {
-            "name": stage.name,
+            "name": stage.name.upper(),
             "command": {
                 "UnitMode": None,
                 "UnitModeChangeRequest": None,
@@ -50,6 +53,5 @@ class PackTagConverter:
             }
         }
 
-        # Convert to JSON string
-        pack_tag_json = json.dumps(pack_tag_data, indent=4)  # Adding indent for better readability
-        return pack_tag_json
+        # Return the pack tag data as a JSON object (Python dictionary)
+        return pack_tag_data
