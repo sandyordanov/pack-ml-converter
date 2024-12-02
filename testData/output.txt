@@ -1,6 +1,10 @@
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
     "name": "n160",
+=======
+    "name": "N160",
+>>>>>>> develop
 =======
     "name": "N160",
 >>>>>>> develop
@@ -14,7 +18,11 @@
     "status": {
         "UnitModeCurrent": null,
 <<<<<<< HEAD
+<<<<<<< HEAD
         "StateCurrent": "Idle",
+=======
+        "StateCurrent": "IDLE",
+>>>>>>> develop
 =======
         "StateCurrent": "IDLE",
 >>>>>>> develop
@@ -26,7 +34,11 @@
     },
     "admin": {
 <<<<<<< HEAD
+<<<<<<< HEAD
         "StopReason.ID": "-1",
+=======
+        "StopReason.ID": "None",
+>>>>>>> develop
 =======
         "StopReason.ID": "None",
 >>>>>>> develop
