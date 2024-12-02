@@ -1,5 +1,5 @@
 {
-    "name": "n160",
+    "name": "n105",
     "command": {
         "UnitMode": null,
         "UnitModeChangeRequest": null,
@@ -9,7 +9,7 @@
     },
     "status": {
         "UnitModeCurrent": null,
-        "StateCurrent": "Idle",
+        "StateCurrent": "Aborted",
         "ExecuteTime": 0,
         "MachSpeed": null,
         "CurMachSpeed": null,
@@ -17,7 +17,7 @@
         "EquipmentInterlock.Starved": null
     },
     "admin": {
-        "StopReason.ID": "-1",
+        "StopReason.ID": "3",
         "ProdProcessedCount[#].Count": null,
         "ProdDefectiveCount[#].Count": null
     }
