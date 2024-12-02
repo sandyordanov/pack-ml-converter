@@ -69,16 +69,17 @@ class TestStage(unittest.TestCase):
         self.assertEqual(state, State.Idle)
 
     def test_happy_flow(self):
-        
+        pass
         
         
         
         
     def test_stop_true_before_start_true(self):
-        
+        pass
         
         
     def test_duplicate_input(self):
+        pass
         
     
 def test_check_endCode(self):
