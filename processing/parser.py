@@ -8,11 +8,11 @@ Summary: class that parses and stores incoming data for processing
 class Parser:
     def __init__(self):
         self.stage_name = None
-        self.start = False
-        self.stop = False
+        self.start = None
+        self.stop = None
         self.timestamp = None
         self.payload = None
-        self.endCode = -1
+        self.endCode = None
     #Created by
     def __repr__(self):
         return f"Message(name={self.stage_name}, start={self.start}, stop={self.stop}, timestamp={self.timestamp}, payload={self.payload}, endcode={self.endCode})"
@@ -31,11 +31,9 @@ class Parser:
         data_entity = action.lower()
         if data_entity == 'stop':
          self.stop = self.payload
-         self.start = None
          #self.endCode = -1
         elif data_entity == "start":
          self.start = self.payload
-         self.stop = None
          #self.endCode = -1
         elif data_entity == "end":
           self.endCode = self.payload
