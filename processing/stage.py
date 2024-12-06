@@ -58,8 +58,12 @@ class Stage:
      print(f"ERROR : {self.error}")
      # State transition logic
      if self.error:
-        self.endState = EndCode
-        self.state = State.Aborted
+        if self.stop == False and self.start == False:
+            self.state = State.Idle       
+        else:
+            self.endState = EndCode
+            self.state = State.Aborted
+          
      else:
         if self.start and self.stop:
          # Error condition if both start and stop are active
@@ -67,6 +71,8 @@ class Stage:
                 self.state = State.Complete
                 self.execute_time = 0
                 pass
+            elif self.state == State.Aborted:
+                self.state = State.Aborted
         elif self.stop:
             if self.state ==State.Execute :             
                 self.state = State.Complete
@@ -77,14 +83,17 @@ class Stage:
                 self.state = State.Aborted
         elif self.start:
             if self.state == State.Idle or self.state == State.Aborted :
-                # Start operation from Idle or Stopped
+                
                 self.state = State.Execute
                 #self.set_execute_time()
             elif self.state == State.Execute :
                 self.state = State.Aborted
         else:
-            self.state = State.Idle
-            self.execute_time = 0
+            if self.state == State.Aborted:
+                self.state = State.Aborted
+            else:
+             self.state = State.Idle
+             self.execute_time = 0
       # Update previous values for the next call
      self.previous_start = self.start
      self.previous_stop = self.stop
@@ -111,3 +120,6 @@ def update_start_stop(self, message):
      elif message.stop ==  None:
          self.stop = self.previous_stop
          self.start = message.start
+     elif message.stop ==  None and message.start ==  None:
+          self.stop = self.previous_stop
+          self.start = self.previous_start
