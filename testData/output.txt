@@ -1,13 +1,5 @@
 {
-<<<<<<< HEAD
-<<<<<<< HEAD
-    "name": "n160",
-=======
     "name": "N160",
->>>>>>> develop
-=======
-    "name": "N160",
->>>>>>> develop
     "command": {
         "UnitMode": null,
         "UnitModeChangeRequest": null,
@@ -17,15 +9,7 @@
     },
     "status": {
         "UnitModeCurrent": null,
-<<<<<<< HEAD
-<<<<<<< HEAD
-        "StateCurrent": "Idle",
-=======
         "StateCurrent": "IDLE",
->>>>>>> develop
-=======
-        "StateCurrent": "IDLE",
->>>>>>> develop
         "ExecuteTime": 0,
         "MachSpeed": null,
         "CurMachSpeed": null,
@@ -33,15 +17,7 @@
         "EquipmentInterlock.Starved": null
     },
     "admin": {
-<<<<<<< HEAD
-<<<<<<< HEAD
-        "StopReason.ID": "-1",
-=======
         "StopReason.ID": "None",
->>>>>>> develop
-=======
-        "StopReason.ID": "None",
->>>>>>> develop
         "ProdProcessedCount[#].Count": null,
         "ProdDefectiveCount[#].Count": null
     }
