@@ -1,7 +1,16 @@
+# made by Merna Gramoun
+# Reviewed by Aga Henriquez 7
+
 import unittest
 from domain.state import State
 from domain.EndCode import EndCode
 from processing.stage import Stage 
+class MockMessage:
+            def __init__(self, start, stop, endCode, timestamp):
+                self.start = start
+                self.stop = stop
+                self.endCode = endCode
+                self.timestamp = timestamp
 
 class TestStage(unittest.TestCase):
     def test_initialization(self):
@@ -25,32 +34,56 @@ class TestStage(unittest.TestCase):
         elapsed_time = stage.calculate_time(current_time)
         self.assertIsNone(elapsed_time)
     
-    def test_update_state(self):
-        class MockMessage:
-            def __init__(self, start, stop, endCode, timestamp):
-                self.start = start
-                self.stop = stop
-                self.endCode = endCode
-                self.timestamp = timestamp
-
+    def test_update_state_to_aborted_then_idle(self):
+       
         stage = Stage("TestStage")
 
+        message = MockMessage(start=None, stop=None, endCode=0, timestamp=10)
+        state = stage.update_state(message)
+        
+
         # Transition from Idle to Execute
-        message = MockMessage(start=True, stop=None, endCode=0, timestamp=10)
+        message = MockMessage(start=True, stop=None, endCode=None, timestamp=10)
         state = stage.update_state(message)
         self.assertEqual(state, State.Execute)
 
-     # Transition from Execute to Complete
-        message = MockMessage(start=None, stop=True, endCode=0, timestamp=20)
+        # Transition from Execute to Complete
+        message = MockMessage(start=None, stop=True, endCode=None, timestamp=20)
         state = stage.update_state(message)
         self.assertEqual(state, State.Complete)
 
         # Error condition with high endCode
-        message = MockMessage(start=False, stop=None, endCode=2, timestamp=30)
+        message = MockMessage(start=None, stop=None, endCode=2, timestamp=30)
         state = stage.update_state(message)
         self.assertEqual(state, State.Aborted)
         self.assertTrue(stage.error)
-   
+        
+        # Receive start = false | Stays on ABORTED
+        message = MockMessage(start=False, stop=None, endCode=None, timestamp=10)
+        state = stage.update_state(message)
+        self.assertEqual(state, State.Aborted)
+
+        # Receive stop = false | Transitions to IDLE
+        message = MockMessage(start=None, stop=False, endCode=None, timestamp=20)
+        state = stage.update_state(message)
+        self.assertEqual(state, State.Idle)
+
+    def test_happy_flow(self):
+        pass
+        
+        
+        
+        
+    def test_stop_true_before_start_true(self):
+        pass
+        
+        
+    def test_duplicate_input(self):
+        pass
+    
+    def test_no_endcode_received(self):
+        pass
+      
     
 def test_check_endCode(self):
         class MockMessage:
@@ -68,3 +101,23 @@ def test_check_endCode(self):
         message = MockMessage(endCode=2)
         stage.check_endCode(message)
         self.assertTrue(stage.error)
+        
+def test_update_start_and_stop(self):
+    stage = Stage("TestStage")
+    message = MockMessage(start=None, stop=None, endCode=0, timestamp=10)
+    stage.update_start_stop(stage,message)
+    message = MockMessage(start=True, stop=None, endCode=None, timestamp=10)
+    stage.update_start_stop(stage,message)
+    message = MockMessage(start=None, stop=None, endCode=2, timestamp=10)
+    stage.update_start_stop(stage,message)
+    message = MockMessage(start=None, stop=True, endCode=None, timestamp=20)
+    stage.update_start_stop(stage,message)
+    message = MockMessage(start=None, stop=None, endCode=2, timestamp=30)
+    stage.update_start_stop(stage,message)  
+    message = MockMessage(start=False, stop=None, endCode=None, timestamp=10)
+    stage.update_start_stop(stage,message)
+    message = MockMessage(start=None, stop=False, endCode=None, timestamp=20)
+    stage.update_start_stop(stage,message) 
+    
+    self.assertFalse(message.start)
+    self.assertFalse(message.stop)
