@@ -80,10 +80,14 @@ class TestStage(unittest.TestCase):
         
     def test_duplicate_input(self):
         pass
+<<<<<<< HEAD
     
     def test_no_endcode_received(self):
         pass
       
+=======
+        
+>>>>>>> 6f5da41ea8324d2ff9ea4db128375529e3b09bb2
     
 def test_check_endCode(self):
         class MockMessage:

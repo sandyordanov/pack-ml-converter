@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
     "name": "n160",
+=======
+    "name": "N160",
+>>>>>>> 6f5da41ea8324d2ff9ea4db128375529e3b09bb2
     "command": {
         "UnitMode": null,
         "UnitModeChangeRequest": null,
@@ -9,7 +13,11 @@
     },
     "status": {
         "UnitModeCurrent": null,
+<<<<<<< HEAD
         "StateCurrent": "Idle",
+=======
+        "StateCurrent": "IDLE",
+>>>>>>> 6f5da41ea8324d2ff9ea4db128375529e3b09bb2
         "ExecuteTime": 0,
         "MachSpeed": null,
         "CurMachSpeed": null,
