@@ -10,7 +10,7 @@ from output.output_processor import OutputProcessor
 
 production_line = ProductionLine()
 
-#created by aleksandar
+#created by aleksandar | edited by aga
 def main():
     create_NX4_line()
     while True:
@@ -23,17 +23,21 @@ def main():
 
         choice = input("Enter the number of your choice: ")
 
+        #console input
         if choice == '1':
             console_input = ConsoleInput()
             parsed_data = console_input.input_console()
 
             handle_parsed_data(parsed_data)
             get_runtime_updates()
+
+        #kafka input
         elif choice == '2':
             #kafka_input = KafkaInput();
 
             pass
 
+        #file input
         elif choice == '3':
             file_input = FileInput("example.txt")
             

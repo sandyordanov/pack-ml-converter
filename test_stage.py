@@ -70,9 +70,7 @@ class TestStage(unittest.TestCase):
 
     def test_happy_flow(self):
         pass
-        
-        
-        
+
         
     def test_stop_true_before_start_true(self):
         pass
@@ -82,7 +80,7 @@ class TestStage(unittest.TestCase):
         pass
 
     
-    def test_no_endcode_received(self):
+    def test_with_no_endcode_received(self):
         pass
       
 

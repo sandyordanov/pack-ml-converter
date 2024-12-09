@@ -1,6 +1,6 @@
 from input.input import Input
-#from faststream import FastStream
-#from faststream.kafka import KafkaBroker
+from faststream import FastStream
+from faststream.kafka import KafkaBroker
 import json
 
 # created by Dion

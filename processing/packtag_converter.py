@@ -17,8 +17,7 @@ class PackTagConverter:
         if stage is None:
             raise ValueError("The 'stage' object is None. Please ensure it is properly initialized.")
 
-        # Convert enum state to its name (string representation of the enum member)
-        state_name = stage.name
+        # Convert enums to its name (string representation of the enum member)
         exec_time = stage.execute_time
         endcode_name = stage.endCode.name if isinstance(stage.endCode, EndCode) else str(stage.endCode)
         state_name = stage.state.name if isinstance(stage.state, State) else str(stage.state)
