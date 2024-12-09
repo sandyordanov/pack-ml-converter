@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  kafka:
+    image: wurstmeister/kafka:latest
+    environment:
+      KAFKA_ADVERTISED_LISTENER: INSIDE://kafka:9093
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INSIDE:PLAINTEXT
+      KAFKA_LISTENER_NAMES: INSIDE
+      KAFKA_LISTENER_EXPLICIT_NAME: INSIDE
+      KAFKA_LISTENER_INTERNAL: INSIDE
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181  # Add this line to connect Kafka to ZooKeeper
+      KAFKA_LISTENER_SECURITY_PROTOCOL: PLAINTEXT
+    ports:
+      - "9093:9093"
+
+  zookeeper:
+    image: zookeeper:3.6
+    ports:
+      - "2181:2181"
+
+      
