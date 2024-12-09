@@ -1,3 +1,4 @@
+import asyncio
 from input.file_input import FileInput
 from input.console_input import ConsoleInput
 from input.kafka_input import KafkaInput
@@ -7,8 +8,28 @@ from domain.state import State
 from processing.parser import Parser
 from processing.packtag_converter import PackTagConverter
 from output.output_processor import OutputProcessor
+from faststream import FastStream
+from faststream.kafka import KafkaBroker
+
 
 production_line = ProductionLine()
+async def run_kafka_input():
+    """
+    Continuously runs KafkaInput to listen for messages on the 'Dummies' topic.
+    """
+    broker = KafkaBroker("192.168.1.62:9092")  # Kafka broker address
+    app = FastStream(broker)
+    print(" sybscribe")
+    # Subscribe to 'Dummies' topic
+    @broker.subscriber("Dummies")  # Replace with your actual topic name
+    async def process_kafka_message(message: str):
+        """
+        Print the incoming Kafka messages.
+        """
+        print(f"Received message: {message}")
+
+    # Start the FastStream application to listen to Kafka messages
+    await app.start()
 
 #created by aleksandar
 def main():
@@ -29,10 +50,13 @@ def main():
 
             handle_parsed_data(parsed_data)
             get_runtime_updates()
-        elif choice == '2':
-            #kafka_input = KafkaInput();
 
-            pass
+        elif choice == '2':
+            print("Starting Kafka listener... (Press Ctrl+C to stop)")
+            try:
+                asyncio.run(run_kafka_input())  # Start the Kafka input in an async loop
+            except KeyboardInterrupt:
+                print("Kafka listener stopped.")   
 
         elif choice == '3':
             file_input = FileInput("example.txt")
