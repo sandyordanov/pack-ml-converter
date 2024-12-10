@@ -1,4 +1,3 @@
-import asyncio
 from input.file_input import FileInput
 from input.console_input import ConsoleInput
 from input.kafka_input import KafkaInput
@@ -31,7 +30,7 @@ async def run_kafka_input():
     # Start the FastStream application to listen to Kafka messages
     await app.start()
 
-#created by aleksandar
+#created by aleksandar | edited by aga
 def main():
     create_NX4_line()
     while True:
@@ -44,6 +43,7 @@ def main():
 
         choice = input("Enter the number of your choice: ")
 
+        #console input
         if choice == '1':
             console_input = ConsoleInput()
             parsed_data = console_input.input_console()
@@ -51,13 +51,15 @@ def main():
             handle_parsed_data(parsed_data)
             get_runtime_updates()
 
+        #kafka input
         elif choice == '2':
             print("Starting Kafka listener... (Press Ctrl+C to stop)")
             try:
                 asyncio.run(run_kafka_input())  # Start the Kafka input in an async loop
             except KeyboardInterrupt:
-                print("Kafka listener stopped.")   
+                print("Kafka listener stopped.")
 
+        #file input
         elif choice == '3':
             file_input = FileInput("example.txt")
             
