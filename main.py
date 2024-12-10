@@ -19,7 +19,7 @@ async def run_kafka_input():
     """
     broker = KafkaBroker("192.168.1.62:9092")  # Kafka broker address
     app = FastStream(broker)
-    print(" sybscribe")
+    print(" subscribe")
     # Subscribe to 'Dummies' topic
     @broker.subscriber("Dummies")  # Replace with your actual topic name
     async def process_kafka_message(message: str):
