@@ -1,4 +1,9 @@
 from enum import Enum
+"""
+Created by Merna & Aga
+Summary: Enumaration list of all possible PackML States
+         *Please see documentation for further expanation*
+"""
 class EndCode(Enum):
     Not_Active = 0
     Normal_End =1

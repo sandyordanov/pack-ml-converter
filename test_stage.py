@@ -69,24 +69,74 @@ class TestStage(unittest.TestCase):
         self.assertEqual(state, State.Idle)
 
     def test_happy_flow(self):
-        pass
-        
-        
-        
-        
+        stage = Stage("TestStage")
+
+        message = MockMessage(start=None, stop=None, endCode=0, timestamp=10)
+        state = stage.update_state(message)
+
+
+        # Transition from Idle to Execute
+        message = MockMessage(start=True, stop=None, endCode=None, timestamp=10)
+        state = stage.update_state(message)
+        self.assertEqual(state, State.Execute)
+
+        # Transition from Execute to Complete
+        message = MockMessage(start=None, stop=True, endCode=None, timestamp=20)
+        state = stage.update_state(message)
+        self.assertEqual(state, State.Complete)
+
+
+        # Receive start = false | Stays on Complete
+        message = MockMessage(start=False, stop=None, endCode=None, timestamp=10)
+        state = stage.update_state(message)
+        self.assertEqual(state, State.Complete)
+
+        # Receive stop = false | Transitions to IDLE
+        message = MockMessage(start=None, stop=False, endCode=None, timestamp=20)
+        state = stage.update_state(message)
+        self.assertEqual(state, State.Idle)
+
+
     def test_stop_true_before_start_true(self):
-        pass
+        stage = Stage("TestStage")
+
+
+        # Transition from Idle to Aborted
+        message = MockMessage(start=None, stop=True, endCode=None, timestamp=10)
+        state = stage.update_state(message)
+        self.assertEqual(state, State.Aborted)
+
+        # Transition from Aborted to IDLE
+        message = MockMessage(start=None, stop=False, endCode=None, timestamp=20)
+        state = stage.update_state(message)
+        self.assertEqual(state, State.Aborted)
+
+
+        # Receive start = false | Stays on Complete
+        message = MockMessage(start=True, stop=None, endCode=None, timestamp=10)
+        state = stage.update_state(message)
+        self.assertEqual(state, State.Execute)
+
+        # Receive stop = false | Transitions to IDLE
+        message = MockMessage(start=False, stop=None, endCode=None, timestamp=20)
+        state = stage.update_state(message)
+        self.assertEqual(state, State.Idle)
         
         
     def test_duplicate_input(self):
-        pass
+        stage = Stage("TestStage")
 
-    
-    def test_no_endcode_received(self):
-        pass
-      
+        message = MockMessage(start=True, stop=None, endCode=None, timestamp=10)
+        state = stage.update_state(message)
+        self.assertEqual(state, State.Execute)
 
-    
+        # Transition from Aborted to IDLE
+        message = MockMessage(start=True, stop=None, endCode=None, timestamp=20)
+        state = stage.update_state(message)
+        self.assertEqual(state, State.Aborted)
+
+
+
 def test_check_endCode(self):
         class MockMessage:
             def __init__(self, endCode):
