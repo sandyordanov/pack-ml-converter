@@ -1,9 +1,16 @@
 {
-<<<<<<< HEAD
-    "name": "n160",
-=======
-    "name": "N160",
->>>>>>> 6f5da41ea8324d2ff9ea4db128375529e3b09bb2
+    "name": "N105",
+    "status": {
+        "UnitModeCurrent": "Producing",
+        "StateCurrent": "EXECUTE",
+        "ExecuteTime": null,
+        "MachSpeed": null,
+        "CurMachSpeed": null,
+        "EquipmentInterlock": {
+            "blocked": null,
+            "starved": null
+        }
+    },
     "command": {
         "UnitMode": null,
         "UnitModeChangeRequest": null,
@@ -11,22 +18,975 @@
         "CntrlCmd": null,
         "CmdChangeRequest": null
     },
+    "admin": {
+        "StopReason.ID": "None",
+        "MessageTimestamp": "2024-12-12T10:24:51.472988+01:00",
+        "ProdProcessedCount": {
+            "count": null
+        },
+        "ProdDefectiveCount": {
+            "count": null
+        }
+    }
+}
+{
+    "name": "N105",
     "status": {
-        "UnitModeCurrent": null,
-<<<<<<< HEAD
-        "StateCurrent": "Idle",
-=======
-        "StateCurrent": "IDLE",
->>>>>>> 6f5da41ea8324d2ff9ea4db128375529e3b09bb2
+        "UnitModeCurrent": "Producing",
+        "StateCurrent": "COMPLETE",
         "ExecuteTime": 0,
         "MachSpeed": null,
         "CurMachSpeed": null,
-        "EquipmentInterlock.Blocked": null,
-        "EquipmentInterlock.Starved": null
+        "EquipmentInterlock": {
+            "blocked": null,
+            "starved": null
+        }
+    },
+    "command": {
+        "UnitMode": null,
+        "UnitModeChangeRequest": null,
+        "MachSpeed": null,
+        "CntrlCmd": null,
+        "CmdChangeRequest": null
     },
     "admin": {
         "StopReason.ID": "None",
-        "ProdProcessedCount[#].Count": null,
-        "ProdDefectiveCount[#].Count": null
+        "MessageTimestamp": "2024-12-12T10:24:52.475330+01:00",
+        "ProdProcessedCount": {
+            "count": null
+        },
+        "ProdDefectiveCount": {
+            "count": null
+        }
+    }
+}
+{
+    "name": "N105",
+    "status": {
+        "UnitModeCurrent": "Producing",
+        "StateCurrent": "COMPLETE",
+        "ExecuteTime": 0,
+        "MachSpeed": null,
+        "CurMachSpeed": null,
+        "EquipmentInterlock": {
+            "blocked": null,
+            "starved": null
+        }
+    },
+    "command": {
+        "UnitMode": null,
+        "UnitModeChangeRequest": null,
+        "MachSpeed": null,
+        "CntrlCmd": null,
+        "CmdChangeRequest": null
+    },
+    "admin": {
+        "StopReason.ID": "None",
+        "MessageTimestamp": "2024-12-12T10:24:53.475654+01:00",
+        "ProdProcessedCount": {
+            "count": null
+        },
+        "ProdDefectiveCount": {
+            "count": null
+        }
+    }
+}
+{
+    "name": "N105",
+    "status": {
+        "UnitModeCurrent": "Producing",
+        "StateCurrent": "IDLE",
+        "ExecuteTime": 0,
+        "MachSpeed": null,
+        "CurMachSpeed": null,
+        "EquipmentInterlock": {
+            "blocked": null,
+            "starved": null
+        }
+    },
+    "command": {
+        "UnitMode": null,
+        "UnitModeChangeRequest": null,
+        "MachSpeed": null,
+        "CntrlCmd": null,
+        "CmdChangeRequest": null
+    },
+    "admin": {
+        "StopReason.ID": "None",
+        "MessageTimestamp": "2024-12-12T10:24:54.477198+01:00",
+        "ProdProcessedCount": {
+            "count": null
+        },
+        "ProdDefectiveCount": {
+            "count": null
+        }
+    }
+}
+{
+    "name": "N115",
+    "status": {
+        "UnitModeCurrent": "Producing",
+        "StateCurrent": "EXECUTE",
+        "ExecuteTime": null,
+        "MachSpeed": null,
+        "CurMachSpeed": null,
+        "EquipmentInterlock": {
+            "blocked": null,
+            "starved": null
+        }
+    },
+    "command": {
+        "UnitMode": null,
+        "UnitModeChangeRequest": null,
+        "MachSpeed": null,
+        "CntrlCmd": null,
+        "CmdChangeRequest": null
+    },
+    "admin": {
+        "StopReason.ID": "None",
+        "MessageTimestamp": "2024-12-12T10:24:55.478385+01:00",
+        "ProdProcessedCount": {
+            "count": null
+        },
+        "ProdDefectiveCount": {
+            "count": null
+        }
+    }
+}
+{
+    "name": "N115",
+    "status": {
+        "UnitModeCurrent": "Producing",
+        "StateCurrent": "COMPLETE",
+        "ExecuteTime": 0,
+        "MachSpeed": null,
+        "CurMachSpeed": null,
+        "EquipmentInterlock": {
+            "blocked": null,
+            "starved": null
+        }
+    },
+    "command": {
+        "UnitMode": null,
+        "UnitModeChangeRequest": null,
+        "MachSpeed": null,
+        "CntrlCmd": null,
+        "CmdChangeRequest": null
+    },
+    "admin": {
+        "StopReason.ID": "None",
+        "MessageTimestamp": "2024-12-12T10:24:56.479376+01:00",
+        "ProdProcessedCount": {
+            "count": null
+        },
+        "ProdDefectiveCount": {
+            "count": null
+        }
+    }
+}
+{
+    "name": "N115",
+    "status": {
+        "UnitModeCurrent": "Producing",
+        "StateCurrent": "COMPLETE",
+        "ExecuteTime": 0,
+        "MachSpeed": null,
+        "CurMachSpeed": null,
+        "EquipmentInterlock": {
+            "blocked": null,
+            "starved": null
+        }
+    },
+    "command": {
+        "UnitMode": null,
+        "UnitModeChangeRequest": null,
+        "MachSpeed": null,
+        "CntrlCmd": null,
+        "CmdChangeRequest": null
+    },
+    "admin": {
+        "StopReason.ID": "None",
+        "MessageTimestamp": "2024-12-12T10:24:57.482001+01:00",
+        "ProdProcessedCount": {
+            "count": null
+        },
+        "ProdDefectiveCount": {
+            "count": null
+        }
+    }
+}
+{
+    "name": "N115",
+    "status": {
+        "UnitModeCurrent": "Producing",
+        "StateCurrent": "IDLE",
+        "ExecuteTime": 0,
+        "MachSpeed": null,
+        "CurMachSpeed": null,
+        "EquipmentInterlock": {
+            "blocked": null,
+            "starved": null
+        }
+    },
+    "command": {
+        "UnitMode": null,
+        "UnitModeChangeRequest": null,
+        "MachSpeed": null,
+        "CntrlCmd": null,
+        "CmdChangeRequest": null
+    },
+    "admin": {
+        "StopReason.ID": "None",
+        "MessageTimestamp": "2024-12-12T10:24:58.482558+01:00",
+        "ProdProcessedCount": {
+            "count": null
+        },
+        "ProdDefectiveCount": {
+            "count": null
+        }
+    }
+}
+{
+    "name": "N120",
+    "status": {
+        "UnitModeCurrent": "Producing",
+        "StateCurrent": "EXECUTE",
+        "ExecuteTime": null,
+        "MachSpeed": null,
+        "CurMachSpeed": null,
+        "EquipmentInterlock": {
+            "blocked": null,
+            "starved": null
+        }
+    },
+    "command": {
+        "UnitMode": null,
+        "UnitModeChangeRequest": null,
+        "MachSpeed": null,
+        "CntrlCmd": null,
+        "CmdChangeRequest": null
+    },
+    "admin": {
+        "StopReason.ID": "None",
+        "MessageTimestamp": "2024-12-12T10:24:59.483511+01:00",
+        "ProdProcessedCount": {
+            "count": null
+        },
+        "ProdDefectiveCount": {
+            "count": null
+        }
+    }
+}
+{
+    "name": "N120",
+    "status": {
+        "UnitModeCurrent": "Producing",
+        "StateCurrent": "COMPLETE",
+        "ExecuteTime": 0,
+        "MachSpeed": null,
+        "CurMachSpeed": null,
+        "EquipmentInterlock": {
+            "blocked": null,
+            "starved": null
+        }
+    },
+    "command": {
+        "UnitMode": null,
+        "UnitModeChangeRequest": null,
+        "MachSpeed": null,
+        "CntrlCmd": null,
+        "CmdChangeRequest": null
+    },
+    "admin": {
+        "StopReason.ID": "None",
+        "MessageTimestamp": "2024-12-12T10:25:00.483851+01:00",
+        "ProdProcessedCount": {
+            "count": null
+        },
+        "ProdDefectiveCount": {
+            "count": null
+        }
+    }
+}
+{
+    "name": "N120",
+    "status": {
+        "UnitModeCurrent": "Producing",
+        "StateCurrent": "COMPLETE",
+        "ExecuteTime": 0,
+        "MachSpeed": null,
+        "CurMachSpeed": null,
+        "EquipmentInterlock": {
+            "blocked": null,
+            "starved": null
+        }
+    },
+    "command": {
+        "UnitMode": null,
+        "UnitModeChangeRequest": null,
+        "MachSpeed": null,
+        "CntrlCmd": null,
+        "CmdChangeRequest": null
+    },
+    "admin": {
+        "StopReason.ID": "None",
+        "MessageTimestamp": "2024-12-12T10:25:01.485364+01:00",
+        "ProdProcessedCount": {
+            "count": null
+        },
+        "ProdDefectiveCount": {
+            "count": null
+        }
+    }
+}
+{
+    "name": "N120",
+    "status": {
+        "UnitModeCurrent": "Producing",
+        "StateCurrent": "IDLE",
+        "ExecuteTime": 0,
+        "MachSpeed": null,
+        "CurMachSpeed": null,
+        "EquipmentInterlock": {
+            "blocked": null,
+            "starved": null
+        }
+    },
+    "command": {
+        "UnitMode": null,
+        "UnitModeChangeRequest": null,
+        "MachSpeed": null,
+        "CntrlCmd": null,
+        "CmdChangeRequest": null
+    },
+    "admin": {
+        "StopReason.ID": "None",
+        "MessageTimestamp": "2024-12-12T10:25:02.486175+01:00",
+        "ProdProcessedCount": {
+            "count": null
+        },
+        "ProdDefectiveCount": {
+            "count": null
+        }
+    }
+}
+{
+    "name": "N125",
+    "status": {
+        "UnitModeCurrent": "Producing",
+        "StateCurrent": "EXECUTE",
+        "ExecuteTime": null,
+        "MachSpeed": null,
+        "CurMachSpeed": null,
+        "EquipmentInterlock": {
+            "blocked": null,
+            "starved": null
+        }
+    },
+    "command": {
+        "UnitMode": null,
+        "UnitModeChangeRequest": null,
+        "MachSpeed": null,
+        "CntrlCmd": null,
+        "CmdChangeRequest": null
+    },
+    "admin": {
+        "StopReason.ID": "None",
+        "MessageTimestamp": "2024-12-12T10:25:03.486264+01:00",
+        "ProdProcessedCount": {
+            "count": null
+        },
+        "ProdDefectiveCount": {
+            "count": null
+        }
+    }
+}
+{
+    "name": "N125",
+    "status": {
+        "UnitModeCurrent": "Producing",
+        "StateCurrent": "COMPLETE",
+        "ExecuteTime": 0,
+        "MachSpeed": null,
+        "CurMachSpeed": null,
+        "EquipmentInterlock": {
+            "blocked": null,
+            "starved": null
+        }
+    },
+    "command": {
+        "UnitMode": null,
+        "UnitModeChangeRequest": null,
+        "MachSpeed": null,
+        "CntrlCmd": null,
+        "CmdChangeRequest": null
+    },
+    "admin": {
+        "StopReason.ID": "None",
+        "MessageTimestamp": "2024-12-12T10:25:04.487219+01:00",
+        "ProdProcessedCount": {
+            "count": null
+        },
+        "ProdDefectiveCount": {
+            "count": null
+        }
+    }
+}
+{
+    "name": "N125",
+    "status": {
+        "UnitModeCurrent": "Producing",
+        "StateCurrent": "COMPLETE",
+        "ExecuteTime": 0,
+        "MachSpeed": null,
+        "CurMachSpeed": null,
+        "EquipmentInterlock": {
+            "blocked": null,
+            "starved": null
+        }
+    },
+    "command": {
+        "UnitMode": null,
+        "UnitModeChangeRequest": null,
+        "MachSpeed": null,
+        "CntrlCmd": null,
+        "CmdChangeRequest": null
+    },
+    "admin": {
+        "StopReason.ID": "None",
+        "MessageTimestamp": "2024-12-12T10:25:05.487252+01:00",
+        "ProdProcessedCount": {
+            "count": null
+        },
+        "ProdDefectiveCount": {
+            "count": null
+        }
+    }
+}
+{
+    "name": "N125",
+    "status": {
+        "UnitModeCurrent": "Producing",
+        "StateCurrent": "IDLE",
+        "ExecuteTime": 0,
+        "MachSpeed": null,
+        "CurMachSpeed": null,
+        "EquipmentInterlock": {
+            "blocked": null,
+            "starved": null
+        }
+    },
+    "command": {
+        "UnitMode": null,
+        "UnitModeChangeRequest": null,
+        "MachSpeed": null,
+        "CntrlCmd": null,
+        "CmdChangeRequest": null
+    },
+    "admin": {
+        "StopReason.ID": "None",
+        "MessageTimestamp": "2024-12-12T10:25:06.487517+01:00",
+        "ProdProcessedCount": {
+            "count": null
+        },
+        "ProdDefectiveCount": {
+            "count": null
+        }
+    }
+}
+{
+    "name": "N135",
+    "status": {
+        "UnitModeCurrent": "Producing",
+        "StateCurrent": "EXECUTE",
+        "ExecuteTime": null,
+        "MachSpeed": null,
+        "CurMachSpeed": null,
+        "EquipmentInterlock": {
+            "blocked": null,
+            "starved": null
+        }
+    },
+    "command": {
+        "UnitMode": null,
+        "UnitModeChangeRequest": null,
+        "MachSpeed": null,
+        "CntrlCmd": null,
+        "CmdChangeRequest": null
+    },
+    "admin": {
+        "StopReason.ID": "None",
+        "MessageTimestamp": "2024-12-12T10:25:07.487709+01:00",
+        "ProdProcessedCount": {
+            "count": null
+        },
+        "ProdDefectiveCount": {
+            "count": null
+        }
+    }
+}
+{
+    "name": "N135",
+    "status": {
+        "UnitModeCurrent": "Producing",
+        "StateCurrent": "COMPLETE",
+        "ExecuteTime": 0,
+        "MachSpeed": null,
+        "CurMachSpeed": null,
+        "EquipmentInterlock": {
+            "blocked": null,
+            "starved": null
+        }
+    },
+    "command": {
+        "UnitMode": null,
+        "UnitModeChangeRequest": null,
+        "MachSpeed": null,
+        "CntrlCmd": null,
+        "CmdChangeRequest": null
+    },
+    "admin": {
+        "StopReason.ID": "None",
+        "MessageTimestamp": "2024-12-12T10:25:08.488612+01:00",
+        "ProdProcessedCount": {
+            "count": null
+        },
+        "ProdDefectiveCount": {
+            "count": null
+        }
+    }
+}
+{
+    "name": "N135",
+    "status": {
+        "UnitModeCurrent": "Producing",
+        "StateCurrent": "COMPLETE",
+        "ExecuteTime": 0,
+        "MachSpeed": null,
+        "CurMachSpeed": null,
+        "EquipmentInterlock": {
+            "blocked": null,
+            "starved": null
+        }
+    },
+    "command": {
+        "UnitMode": null,
+        "UnitModeChangeRequest": null,
+        "MachSpeed": null,
+        "CntrlCmd": null,
+        "CmdChangeRequest": null
+    },
+    "admin": {
+        "StopReason.ID": "None",
+        "MessageTimestamp": "2024-12-12T10:25:09.489683+01:00",
+        "ProdProcessedCount": {
+            "count": null
+        },
+        "ProdDefectiveCount": {
+            "count": null
+        }
+    }
+}
+{
+    "name": "N135",
+    "status": {
+        "UnitModeCurrent": "Producing",
+        "StateCurrent": "IDLE",
+        "ExecuteTime": 0,
+        "MachSpeed": null,
+        "CurMachSpeed": null,
+        "EquipmentInterlock": {
+            "blocked": null,
+            "starved": null
+        }
+    },
+    "command": {
+        "UnitMode": null,
+        "UnitModeChangeRequest": null,
+        "MachSpeed": null,
+        "CntrlCmd": null,
+        "CmdChangeRequest": null
+    },
+    "admin": {
+        "StopReason.ID": "None",
+        "MessageTimestamp": "2024-12-12T10:25:10.490041+01:00",
+        "ProdProcessedCount": {
+            "count": null
+        },
+        "ProdDefectiveCount": {
+            "count": null
+        }
+    }
+}
+{
+    "name": "N140",
+    "status": {
+        "UnitModeCurrent": "Producing",
+        "StateCurrent": "EXECUTE",
+        "ExecuteTime": null,
+        "MachSpeed": null,
+        "CurMachSpeed": null,
+        "EquipmentInterlock": {
+            "blocked": null,
+            "starved": null
+        }
+    },
+    "command": {
+        "UnitMode": null,
+        "UnitModeChangeRequest": null,
+        "MachSpeed": null,
+        "CntrlCmd": null,
+        "CmdChangeRequest": null
+    },
+    "admin": {
+        "StopReason.ID": "None",
+        "MessageTimestamp": "2024-12-12T10:25:11.490504+01:00",
+        "ProdProcessedCount": {
+            "count": null
+        },
+        "ProdDefectiveCount": {
+            "count": null
+        }
+    }
+}
+{
+    "name": "N140",
+    "status": {
+        "UnitModeCurrent": "Producing",
+        "StateCurrent": "COMPLETE",
+        "ExecuteTime": 0,
+        "MachSpeed": null,
+        "CurMachSpeed": null,
+        "EquipmentInterlock": {
+            "blocked": null,
+            "starved": null
+        }
+    },
+    "command": {
+        "UnitMode": null,
+        "UnitModeChangeRequest": null,
+        "MachSpeed": null,
+        "CntrlCmd": null,
+        "CmdChangeRequest": null
+    },
+    "admin": {
+        "StopReason.ID": "None",
+        "MessageTimestamp": "2024-12-12T10:25:12.491423+01:00",
+        "ProdProcessedCount": {
+            "count": null
+        },
+        "ProdDefectiveCount": {
+            "count": null
+        }
+    }
+}
+{
+    "name": "N140",
+    "status": {
+        "UnitModeCurrent": "Producing",
+        "StateCurrent": "COMPLETE",
+        "ExecuteTime": 0,
+        "MachSpeed": null,
+        "CurMachSpeed": null,
+        "EquipmentInterlock": {
+            "blocked": null,
+            "starved": null
+        }
+    },
+    "command": {
+        "UnitMode": null,
+        "UnitModeChangeRequest": null,
+        "MachSpeed": null,
+        "CntrlCmd": null,
+        "CmdChangeRequest": null
+    },
+    "admin": {
+        "StopReason.ID": "None",
+        "MessageTimestamp": "2024-12-12T10:25:13.493118+01:00",
+        "ProdProcessedCount": {
+            "count": null
+        },
+        "ProdDefectiveCount": {
+            "count": null
+        }
+    }
+}
+{
+    "name": "N140",
+    "status": {
+        "UnitModeCurrent": "Producing",
+        "StateCurrent": "IDLE",
+        "ExecuteTime": 0,
+        "MachSpeed": null,
+        "CurMachSpeed": null,
+        "EquipmentInterlock": {
+            "blocked": null,
+            "starved": null
+        }
+    },
+    "command": {
+        "UnitMode": null,
+        "UnitModeChangeRequest": null,
+        "MachSpeed": null,
+        "CntrlCmd": null,
+        "CmdChangeRequest": null
+    },
+    "admin": {
+        "StopReason.ID": "None",
+        "MessageTimestamp": "2024-12-12T10:25:14.494018+01:00",
+        "ProdProcessedCount": {
+            "count": null
+        },
+        "ProdDefectiveCount": {
+            "count": null
+        }
+    }
+}
+{
+    "name": "N145",
+    "status": {
+        "UnitModeCurrent": "Producing",
+        "StateCurrent": "EXECUTE",
+        "ExecuteTime": null,
+        "MachSpeed": null,
+        "CurMachSpeed": null,
+        "EquipmentInterlock": {
+            "blocked": null,
+            "starved": null
+        }
+    },
+    "command": {
+        "UnitMode": null,
+        "UnitModeChangeRequest": null,
+        "MachSpeed": null,
+        "CntrlCmd": null,
+        "CmdChangeRequest": null
+    },
+    "admin": {
+        "StopReason.ID": "None",
+        "MessageTimestamp": "2024-12-12T10:25:15.495328+01:00",
+        "ProdProcessedCount": {
+            "count": null
+        },
+        "ProdDefectiveCount": {
+            "count": null
+        }
+    }
+}
+{
+    "name": "N145",
+    "status": {
+        "UnitModeCurrent": "Producing",
+        "StateCurrent": "COMPLETE",
+        "ExecuteTime": 0,
+        "MachSpeed": null,
+        "CurMachSpeed": null,
+        "EquipmentInterlock": {
+            "blocked": null,
+            "starved": null
+        }
+    },
+    "command": {
+        "UnitMode": null,
+        "UnitModeChangeRequest": null,
+        "MachSpeed": null,
+        "CntrlCmd": null,
+        "CmdChangeRequest": null
+    },
+    "admin": {
+        "StopReason.ID": "None",
+        "MessageTimestamp": "2024-12-12T10:25:16.495519+01:00",
+        "ProdProcessedCount": {
+            "count": null
+        },
+        "ProdDefectiveCount": {
+            "count": null
+        }
+    }
+}
+{
+    "name": "N145",
+    "status": {
+        "UnitModeCurrent": "Producing",
+        "StateCurrent": "COMPLETE",
+        "ExecuteTime": 0,
+        "MachSpeed": null,
+        "CurMachSpeed": null,
+        "EquipmentInterlock": {
+            "blocked": null,
+            "starved": null
+        }
+    },
+    "command": {
+        "UnitMode": null,
+        "UnitModeChangeRequest": null,
+        "MachSpeed": null,
+        "CntrlCmd": null,
+        "CmdChangeRequest": null
+    },
+    "admin": {
+        "StopReason.ID": "None",
+        "MessageTimestamp": "2024-12-12T10:25:17.495538+01:00",
+        "ProdProcessedCount": {
+            "count": null
+        },
+        "ProdDefectiveCount": {
+            "count": null
+        }
+    }
+}
+{
+    "name": "N145",
+    "status": {
+        "UnitModeCurrent": "Producing",
+        "StateCurrent": "IDLE",
+        "ExecuteTime": 0,
+        "MachSpeed": null,
+        "CurMachSpeed": null,
+        "EquipmentInterlock": {
+            "blocked": null,
+            "starved": null
+        }
+    },
+    "command": {
+        "UnitMode": null,
+        "UnitModeChangeRequest": null,
+        "MachSpeed": null,
+        "CntrlCmd": null,
+        "CmdChangeRequest": null
+    },
+    "admin": {
+        "StopReason.ID": "None",
+        "MessageTimestamp": "2024-12-12T10:25:18.497019+01:00",
+        "ProdProcessedCount": {
+            "count": null
+        },
+        "ProdDefectiveCount": {
+            "count": null
+        }
+    }
+}
+{
+    "name": "N160",
+    "status": {
+        "UnitModeCurrent": "Producing",
+        "StateCurrent": "EXECUTE",
+        "ExecuteTime": null,
+        "MachSpeed": null,
+        "CurMachSpeed": null,
+        "EquipmentInterlock": {
+            "blocked": null,
+            "starved": null
+        }
+    },
+    "command": {
+        "UnitMode": null,
+        "UnitModeChangeRequest": null,
+        "MachSpeed": null,
+        "CntrlCmd": null,
+        "CmdChangeRequest": null
+    },
+    "admin": {
+        "StopReason.ID": "None",
+        "MessageTimestamp": "2024-12-12T10:25:19.498145+01:00",
+        "ProdProcessedCount": {
+            "count": null
+        },
+        "ProdDefectiveCount": {
+            "count": null
+        }
+    }
+}
+{
+    "name": "N160",
+    "status": {
+        "UnitModeCurrent": "Producing",
+        "StateCurrent": "COMPLETE",
+        "ExecuteTime": 0,
+        "MachSpeed": null,
+        "CurMachSpeed": null,
+        "EquipmentInterlock": {
+            "blocked": null,
+            "starved": null
+        }
+    },
+    "command": {
+        "UnitMode": null,
+        "UnitModeChangeRequest": null,
+        "MachSpeed": null,
+        "CntrlCmd": null,
+        "CmdChangeRequest": null
+    },
+    "admin": {
+        "StopReason.ID": "None",
+        "MessageTimestamp": "2024-12-12T10:25:20.500037+01:00",
+        "ProdProcessedCount": {
+            "count": null
+        },
+        "ProdDefectiveCount": {
+            "count": null
+        }
+    }
+}
+{
+    "name": "N160",
+    "status": {
+        "UnitModeCurrent": "Producing",
+        "StateCurrent": "COMPLETE",
+        "ExecuteTime": 0,
+        "MachSpeed": null,
+        "CurMachSpeed": null,
+        "EquipmentInterlock": {
+            "blocked": null,
+            "starved": null
+        }
+    },
+    "command": {
+        "UnitMode": null,
+        "UnitModeChangeRequest": null,
+        "MachSpeed": null,
+        "CntrlCmd": null,
+        "CmdChangeRequest": null
+    },
+    "admin": {
+        "StopReason.ID": "None",
+        "MessageTimestamp": "2024-12-12T10:25:21.500383+01:00",
+        "ProdProcessedCount": {
+            "count": null
+        },
+        "ProdDefectiveCount": {
+            "count": null
+        }
+    }
+}
+{
+    "name": "N160",
+    "status": {
+        "UnitModeCurrent": "Producing",
+        "StateCurrent": "IDLE",
+        "ExecuteTime": 0,
+        "MachSpeed": null,
+        "CurMachSpeed": null,
+        "EquipmentInterlock": {
+            "blocked": null,
+            "starved": null
+        }
+    },
+    "command": {
+        "UnitMode": null,
+        "UnitModeChangeRequest": null,
+        "MachSpeed": null,
+        "CntrlCmd": null,
+        "CmdChangeRequest": null
+    },
+    "admin": {
+        "StopReason.ID": "None",
+        "MessageTimestamp": "2024-12-12T10:25:22.501385+01:00",
+        "ProdProcessedCount": {
+            "count": null
+        },
+        "ProdDefectiveCount": {
+            "count": null
+        }
     }
 }

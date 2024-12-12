@@ -1,5 +1,7 @@
 from domain.state import State
 from domain.EndCode import EndCode
+import time
+from datetime import datetime, timezone, timedelta
 import os
 
 """
@@ -29,7 +31,19 @@ class PackTagConverter:
 
         # Create pack tag data
         pack_tag_data = {
+
             "name": stage.name.upper(),
+            "status": {
+                "UnitModeCurrent": "Producing",
+                "StateCurrent": state_name,
+                "ExecuteTime": exec_time,
+                "MachSpeed": None,
+                "CurMachSpeed": None,
+                "EquipmentInterlock": {
+                    "blocked": None,
+                    "starved": None,
+                }
+            },
             "command": {
                 "UnitMode": None,
                 "UnitModeChangeRequest": None,
@@ -37,19 +51,12 @@ class PackTagConverter:
                 "CntrlCmd": None,
                 "CmdChangeRequest": None
             },
-            "status": {
-                "UnitModeCurrent": None,
-                "StateCurrent": state_name,
-                "ExecuteTime": exec_time,
-                "MachSpeed": None,
-                "CurMachSpeed": None,
-                "EquipmentInterlock.Blocked": None,
-                "EquipmentInterlock.Starved": None
-            },
+
             "admin": {
                 "StopReason.ID": endcode_name,
-                "ProdProcessedCount[#].Count": None,
-                "ProdDefectiveCount[#].Count": None
+                "MessageTimestamp": datetime.fromtimestamp(time.time(), tz=timezone(timedelta(hours=1))).isoformat(),
+                "ProdProcessedCount": {"count": None},
+                "ProdDefectiveCount": {"count": None},
             }
         }
 

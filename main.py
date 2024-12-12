@@ -92,6 +92,7 @@ def handle_parsed_data(data):
     stage_updated = production_line.update_stage(data)
     packtag = packtag_converter.convert_stage_to_packtag(stage_updated)
     output_processor.write_to_file(packtag)
+    output_processor.write_to_database(packtag)
     #output_processor.write_to_kafka(packtag)
     output_processor.write_to_console(packtag)
     #add output logic
