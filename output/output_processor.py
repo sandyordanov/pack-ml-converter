@@ -98,43 +98,87 @@ class OutputProcessor:
 
         # Parse the JSON data
         measurement = "machine_status"
+        measurement2 = "execute_time"
         tags = {
             "name": data.get("name"),
-            "UnitModeCurrent": data["status"].get("UnitModeCurrent"),
-            "StateCurrent": data["status"].get("StateCurrent")
+
         }
         fields = {
-            "ExecuteTime": data["status"].get("ExecuteTime"),
-            "MachSpeed": data["status"].get("MachSpeed"),
-            "CurMachSpeed": data["status"].get("CurMachSpeed"),
-            "blocked": data["status"]["EquipmentInterlock"].get("blocked"),
-            "starved": data["status"]["EquipmentInterlock"].get("starved"),
-            "StopReasonID": data["admin"].get("StopReason.ID"),
-            "ProdProcessedCount": data["admin"]["ProdProcessedCount"].get("count"),
-            "ProdDefectiveCount": data["admin"]["ProdDefectiveCount"].get("count"),
-            "UnitModeCommand": data["command"].get("UnitMode"),
-            "UnitModeChangeRequest": data["command"].get("UnitModeChangeRequest"),
-            "MachSpeedCommand": data["command"].get("MachSpeed"),
-            "CntrlCmd": data["command"].get("CntrlCmd"),
-            "CmdChangeRequest": data["command"].get("CmdChangeRequest"),
+            "StateCurrent": data["status"].get("StateCurrent")
+        }
+        fields2 = {
+            "ExecuteTime": float(data["status"].get("ExecuteTime"))
         }
         timestamp = data["admin"].get("MessageTimestamp")
         dt = datetime.datetime.fromisoformat(timestamp)
         nanoseconds = int(dt.timestamp() * 1e9)
 
-
         # Create a Point object
         point = Point(measurement)
+
         for tag_key, tag_value in tags.items():
             if tag_value is not None:
                 point.tag(tag_key, tag_value)
         for field_key, field_value in fields.items():
             if field_value is not None:
                 point.field(field_key, field_value)
+
+        point2 = Point(measurement2)
+        for tag_key, tag_value in tags.items():
+            if tag_value is not None:
+                point2.tag(tag_key, tag_value)
+        for field_key, field_value in fields2.items():
+            if field_value is not None:
+                point2.field(field_key, field_value)
+
         point.time(nanoseconds)
+        point2.time(nanoseconds)
 
         # Write to InfluxDB
-        write_api.write(bucket="packTag_bucket", org=org, record=point)
+        write_api.write(bucket="gBucket", org=org, record=[point,point2])
+
+        # Close the client
+        client.close()
+        print("Data written successfully!")
+
+    def write_to_database2(self, data):
+        token = "cN_-DaTc83j5HdJEKxZPuFUD-0GXsf-O8kaWa-Ab-Agi9qyKijncQOurGWTNF5hF_gzJ0i2o8ZtgWxmMMtaO-g=="
+        org = "my_org"
+        url = "http://192.168.2.127:8086"
+
+        # Initialize InfluxDB client
+        client = InfluxDBClient(url=url, token=token, org=org)
+        write_api = client.write_api(write_options=SYNCHRONOUS)
+
+        # Parse the JSON data
+        measurement = "status_and_time"
+
+        tags = {
+            "name": data.get("name"),  # Tag
+        }
+        fields = {
+            "StateCurrent": data["status"].get("StateCurrent"),  # Field 1
+            "ExecuteTime": float(data["status"].get("ExecuteTime")),  # Field 2
+        }
+        timestamp = data["admin"].get("MessageTimestamp")
+        dt = datetime.datetime.fromisoformat(timestamp)
+        nanoseconds = int(dt.timestamp() * 1e9)  # Convert to nanoseconds
+
+        # Create a single Point object with multiple fields
+        point = Point(measurement).time(nanoseconds)
+
+        # Add tags
+        for tag_key, tag_value in tags.items():
+            if tag_value is not None:
+                point.tag(tag_key, tag_value)
+
+        # Add fields
+        for field_key, field_value in fields.items():
+            if field_value is not None:
+                point.field(field_key, field_value)
+
+        # Write to InfluxDB
+        write_api.write(bucket="gBucket", org=org, record=point)
 
         # Close the client
         client.close()
