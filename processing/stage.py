@@ -1,6 +1,5 @@
 from domain.state import State
 from domain.EndCode import EndCode
-
 import time
 
 #from tenacity import sleep
@@ -27,11 +26,6 @@ class Stage:
         self.previous_time = None
         self.execute_time = None
 
-    #def set_execute_time(self):
-        #by Aleksandar
-        while self.state == State.Execute:
-            sleep(1)
-            self.execute_time +=1
 
 
     #Created by Merna
@@ -51,7 +45,7 @@ class Stage:
      self.endCode = message.endCode
      check_endCode(self,message)
      # Update previous_time with the current message's timestamp
-     self.previous_time = message.timestamp
+
 
      # Update start and stop based on the message
      update_start_stop(self, message)
@@ -59,7 +53,8 @@ class Stage:
      # State transition logic
      if self.error:
         if self.stop == False and self.start == False:
-            self.state = State.Idle       
+            self.state = State.Idle
+            self.previous_time = time.time()
         else:
             self.endState = EndCode
             self.state = State.Aborted
@@ -69,30 +64,38 @@ class Stage:
          # Error condition if both start and stop are active
             if self.state == State.Execute:
                 self.state = State.Complete
-                self.execute_time = 0
+                self.execute_time = round(self.calculate_time(time.time()),2)
                 pass
             elif self.state == State.Aborted:
                 self.state = State.Aborted
         elif self.stop:
             if self.state ==State.Execute :             
                 self.state = State.Complete
-                self.execute_time = 0
+                self.execute_time = round(self.calculate_time(time.time()),2)
             elif self.state ==State.Complete :
-                pass
+                self.previous_start = self.start
+                self.previous_stop = self.stop
+                return None
             else:
                 self.state = State.Aborted
+                self.execute_time = 0
         elif self.start:
             if self.state == State.Idle or self.state == State.Aborted :
                 
                 self.state = State.Execute
-                #self.set_execute_time()
+                self.previous_time = time.time()
+                self.execute_time = 0
             elif self.state == State.Execute :
                 self.state = State.Aborted
+                self.previous_time = time.time()
+                self.execute_time = 0
         else:
             if self.state == State.Aborted:
                 self.state = State.Aborted
+                self.execute_time = 0
             else:
              self.state = State.Idle
+             self.previous_time = time.time()
              self.execute_time = 0
       # Update previous values for the next call
      self.previous_start = self.start
@@ -100,6 +103,7 @@ class Stage:
      print(f" Start: {self.start}, Stop: {self.stop}")
      print(f"Current State: {self.state}")
      return self.state
+
 def check_endCode(self,message):
    
     if self.endCode is not None:
@@ -114,12 +118,12 @@ def check_endCode(self,message):
     else:
          print(f"End code is none")
 def update_start_stop(self, message):
-     if message.start == None :
+     if message.start is None :
          self.start = self.previous_start
          self.stop = message.stop
-     elif message.stop ==  None:
+     elif message.stop is  None:
          self.stop = self.previous_stop
          self.start = message.start
-     elif message.stop ==  None and message.start ==  None:
+     elif message.stop is  None and message.start is  None:
           self.stop = self.previous_stop
           self.start = self.previous_start
