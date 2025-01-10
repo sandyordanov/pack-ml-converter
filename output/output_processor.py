@@ -2,9 +2,9 @@ import os
 from input.input import Input
 #from faststream import FastStream
 #from faststream.kafka import KafkaBroker
-import influxdb_client, os, time
-from influxdb_client import InfluxDBClient, Point, WritePrecision
-from influxdb_client.client.write_api import SYNCHRONOUS
+# import influxdb_client, os, time
+# from influxdb_client import InfluxDBClient, Point, WritePrecision
+# from influxdb_client.client.write_api import SYNCHRONOUS
 import json
 import datetime
 """
