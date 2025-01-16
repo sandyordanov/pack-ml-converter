@@ -2,9 +2,9 @@ import os
 from input.input import Input
 #from faststream import FastStream
 #from faststream.kafka import KafkaBroker
-# import influxdb_client, os, time
-# from influxdb_client import InfluxDBClient, Point, WritePrecision
-# from influxdb_client.client.write_api import SYNCHRONOUS
+import influxdb_client, os, time
+from influxdb_client import InfluxDBClient, Point, WritePrecision
+from influxdb_client.client.write_api import SYNCHRONOUS
 import json
 import datetime
 """
@@ -97,45 +97,38 @@ class OutputProcessor:
         write_api = client.write_api(write_options=SYNCHRONOUS)
 
         # Parse the JSON data
-        measurement = "machine_status"
-        measurement2 = "execute_time"
+        state_measurement = "machine_status"
+        execution_time_measurement = "execution_time"
+
         tags = {
             "name": data.get("name"),
+        }
+        state = data["status"].get("StateCurrent")
+        execute_time = data["status"].get("ExecuteTime")
 
-        }
-        fields = {
-            "StateCurrent": data["status"].get("StateCurrent")
-        }
-        fields2 = {
-            "ExecuteTime": float(data["status"].get("ExecuteTime"))
-        }
         timestamp = data["admin"].get("MessageTimestamp")
         dt = datetime.datetime.fromisoformat(timestamp)
         nanoseconds = int(dt.timestamp() * 1e9)
 
-        # Create a Point object
-        point = Point(measurement)
+        # Write StateCurrent to "machine_status" measurement
+        if state:
+            state_point = Point(state_measurement)
+            for tag_key, tag_value in tags.items():
+                if tag_value is not None:
+                    state_point.tag(tag_key, tag_value)
+            state_point.field("StateCurrent", state)
+            state_point.time(nanoseconds)
+            write_api.write(bucket="new_bucket", org=org, record=[state_point])
 
-        for tag_key, tag_value in tags.items():
-            if tag_value is not None:
-                point.tag(tag_key, tag_value)
-        for field_key, field_value in fields.items():
-            if field_value is not None:
-                point.field(field_key, field_value)
-
-        point2 = Point(measurement2)
-        for tag_key, tag_value in tags.items():
-            if tag_value is not None:
-                point2.tag(tag_key, tag_value)
-        for field_key, field_value in fields2.items():
-            if field_value is not None:
-                point2.field(field_key, field_value)
-
-        point.time(nanoseconds)
-        point2.time(nanoseconds)
-
-        # Write to InfluxDB
-        write_api.write(bucket="gBucket", org=org, record=[point,point2])
+        # Write ExecuteTime to "execution_time" measurement if state is COMPLETE
+        if state == "COMPLETE" and execute_time is not None:
+            execution_point = Point(execution_time_measurement)
+            for tag_key, tag_value in tags.items():
+                if tag_value is not None:
+                    execution_point.tag(tag_key, tag_value)
+            execution_point.field("ExecuteTime", float(execute_time))
+            execution_point.time(nanoseconds)
+            write_api.write(bucket="new_bucket", org=org, record=[execution_point])
 
         # Close the client
         client.close()
