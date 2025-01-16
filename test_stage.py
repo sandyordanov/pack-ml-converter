@@ -135,6 +135,37 @@ class TestStage(unittest.TestCase):
         state = stage.update_state(message)
         self.assertEqual(state, State.Aborted)
 
+    def test_duplicate_input_2(self):
+        stage = Stage("TestStage")
+
+        message = MockMessage(start=True, stop=None, endCode=None, timestamp=10)
+        state = stage.update_state(message)
+        self.assertEqual(state, State.Execute)
+
+        # Transition from Aborted to IDLE
+        message = MockMessage(start=None, stop=True, endCode=None, timestamp=20)
+        state = stage.update_state(message)
+        self.assertEqual(state, State.Complete)
+        
+        message = MockMessage(start=None, stop=True, endCode=None, timestamp=20)
+        state = stage.update_state(message)
+        self.assertEqual(state, State.Aborted)
+        
+    def test_duplicate_input_3(self):
+        stage = Stage("TestStage")
+
+        message = MockMessage(start=True, stop=None, endCode=None, timestamp=10)
+        state = stage.update_state(message)
+        self.assertEqual(state, State.Execute)
+
+        # Transition from Aborted to IDLE
+        message = MockMessage(start=None, stop=True, endCode=None, timestamp=20)
+        state = stage.update_state(message)
+        self.assertEqual(state, State.Complete)
+        
+        message = MockMessage(start=True, stop=None, endCode=None, timestamp=20)
+        state = stage.update_state(message)
+        self.assertEqual(state, State.Aborted)
 
 
 def test_check_endCode(self):

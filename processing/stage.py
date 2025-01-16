@@ -16,22 +16,16 @@ class Stage:
 
     def __init__(self, name, state=State.Idle ,endState = EndCode.Not_Active):
         self.name = name
-        self.start = False
-        self.stop = False
+        self.start = None
+        self.stop = None
         self.endCode = None
         self.endState = endState
         self.error = False
         self.state = state
-        self.previous_start = False
-        self.previous_stop = False
+        self.previous_start = None
+        self.previous_stop = None
         self.previous_time = None
         self.execute_time = None
-
-    #def set_execute_time(self):
-        #by Aleksandar
-        while self.state == State.Execute:
-            sleep(1)
-            self.execute_time +=1
 
 
     #Created by Merna
@@ -46,11 +40,9 @@ class Stage:
             return None
     #Created by Merna
     def update_state(self, message):
-     
-     #elapsed_time = self.calculate_time(message.timestamp)
+
      self.endCode = message.endCode
      check_endCode(self,message)
-     # Update previous_time with the current message's timestamp
      self.previous_time = message.timestamp
 
      # Update start and stop based on the message
@@ -71,7 +63,7 @@ class Stage:
                 self.state = State.Complete
                 self.execute_time = 0
                 pass
-            elif self.state == State.Aborted:
+            else:
                 self.state = State.Aborted
         elif self.stop:
             if self.state ==State.Execute :             
