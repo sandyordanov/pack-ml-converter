@@ -97,44 +97,81 @@ class OutputProcessor:
         write_api = client.write_api(write_options=SYNCHRONOUS)
 
         # Parse the JSON data
-        measurement = "machine_status"
+        state_measurement = "machine_status"
+        execution_time_measurement = "execution_time"
+
         tags = {
             "name": data.get("name"),
-            "UnitModeCurrent": data["status"].get("UnitModeCurrent"),
-            "StateCurrent": data["status"].get("StateCurrent")
         }
-        fields = {
-            "ExecuteTime": data["status"].get("ExecuteTime"),
-            "MachSpeed": data["status"].get("MachSpeed"),
-            "CurMachSpeed": data["status"].get("CurMachSpeed"),
-            "blocked": data["status"]["EquipmentInterlock"].get("blocked"),
-            "starved": data["status"]["EquipmentInterlock"].get("starved"),
-            "StopReasonID": data["admin"].get("StopReason.ID"),
-            "ProdProcessedCount": data["admin"]["ProdProcessedCount"].get("count"),
-            "ProdDefectiveCount": data["admin"]["ProdDefectiveCount"].get("count"),
-            "UnitModeCommand": data["command"].get("UnitMode"),
-            "UnitModeChangeRequest": data["command"].get("UnitModeChangeRequest"),
-            "MachSpeedCommand": data["command"].get("MachSpeed"),
-            "CntrlCmd": data["command"].get("CntrlCmd"),
-            "CmdChangeRequest": data["command"].get("CmdChangeRequest"),
-        }
+        state = data["status"].get("StateCurrent")
+        execute_time = data["status"].get("ExecuteTime")
+
         timestamp = data["admin"].get("MessageTimestamp")
         dt = datetime.datetime.fromisoformat(timestamp)
         nanoseconds = int(dt.timestamp() * 1e9)
 
+        # Write StateCurrent to "machine_status" measurement
+        if state:
+            state_point = Point(state_measurement)
+            for tag_key, tag_value in tags.items():
+                if tag_value is not None:
+                    state_point.tag(tag_key, tag_value)
+            state_point.field("StateCurrent", state)
+            state_point.time(nanoseconds)
+            write_api.write(bucket="new_bucket", org=org, record=[state_point])
 
-        # Create a Point object
-        point = Point(measurement)
+        # Write ExecuteTime to "execution_time" measurement if state is COMPLETE
+        if state == "COMPLETE" and execute_time is not None:
+            execution_point = Point(execution_time_measurement)
+            for tag_key, tag_value in tags.items():
+                if tag_value is not None:
+                    execution_point.tag(tag_key, tag_value)
+            execution_point.field("ExecuteTime", float(execute_time))
+            execution_point.time(nanoseconds)
+            write_api.write(bucket="new_bucket", org=org, record=[execution_point])
+
+        # Close the client
+        client.close()
+        print("Data written successfully!")
+
+    def write_to_database2(self, data):
+        token = "cN_-DaTc83j5HdJEKxZPuFUD-0GXsf-O8kaWa-Ab-Agi9qyKijncQOurGWTNF5hF_gzJ0i2o8ZtgWxmMMtaO-g=="
+        org = "my_org"
+        url = "http://192.168.2.127:8086"
+
+        # Initialize InfluxDB client
+        client = InfluxDBClient(url=url, token=token, org=org)
+        write_api = client.write_api(write_options=SYNCHRONOUS)
+
+        # Parse the JSON data
+        measurement = "status_and_time"
+
+        tags = {
+            "name": data.get("name"),  # Tag
+        }
+        fields = {
+            "StateCurrent": data["status"].get("StateCurrent"),  # Field 1
+            "ExecuteTime": float(data["status"].get("ExecuteTime")),  # Field 2
+        }
+        timestamp = data["admin"].get("MessageTimestamp")
+        dt = datetime.datetime.fromisoformat(timestamp)
+        nanoseconds = int(dt.timestamp() * 1e9)  # Convert to nanoseconds
+
+        # Create a single Point object with multiple fields
+        point = Point(measurement).time(nanoseconds)
+
+        # Add tags
         for tag_key, tag_value in tags.items():
             if tag_value is not None:
                 point.tag(tag_key, tag_value)
+
+        # Add fields
         for field_key, field_value in fields.items():
             if field_value is not None:
                 point.field(field_key, field_value)
-        point.time(nanoseconds)
 
         # Write to InfluxDB
-        write_api.write(bucket="packTag_bucket", org=org, record=point)
+        write_api.write(bucket="gBucket", org=org, record=point)
 
         # Close the client
         client.close()

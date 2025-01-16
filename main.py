@@ -9,26 +9,40 @@ from processing.packtag_converter import PackTagConverter
 from output.output_processor import OutputProcessor
 from faststream import FastStream
 from faststream.kafka import KafkaBroker
-
+from confluent_kafka import Consumer
+import asyncio
 
 production_line = ProductionLine()
-async def run_kafka_input():
-    """
-    Continuously runs KafkaInput to listen for messages on the 'Dummies' topic.
-    """
-    broker = KafkaBroker("192.168.1.62:9092")  # Kafka broker address
-    app = FastStream(broker)
-    print(" subscribe")
-    # Subscribe to 'Dummies' topic
-    @broker.subscriber("Dummies")  # Replace with your actual topic name
-    async def process_kafka_message(message: str):
-        """
-        Print the incoming Kafka messages.
-        """
-        print(f"Received message: {message}")
 
-    # Start the FastStream application to listen to Kafka messages
-    await app.start()
+def run_kafka_input():
+    consumer = Consumer({
+        'bootstrap.servers': '192.168.1.62:9092',
+        'group.id': 'my-group',
+        'auto.offset.reset': 'earliest',
+        'broker.address.family': 'v4',  # Force IPv4
+        'enable.auto.commit': True,
+    })
+
+    consumer.subscribe(['Dummies'])
+
+    print("Listening to Kafka topic 'Dummies'...")
+    try:
+        print("listening on topci")
+        while True:
+            
+         msg = consumer.poll(1.0)
+         if msg is None:
+            print("No messages received.")
+            continue
+         if msg.error():
+            print(f"Consumer error: {msg.error()}")
+            continue
+
+            print("Received message:schees")
+    except KeyboardInterrupt:
+        print("Stopping Kafka consumer...")
+    finally:
+        consumer.close()
 
 #created by aleksandar | edited by aga
 def main():
@@ -55,7 +69,7 @@ def main():
         elif choice == '2':
             print("Starting Kafka listener... (Press Ctrl+C to stop)")
             try:
-                asyncio.run(run_kafka_input())  # Start the Kafka input in an async loop
+                run_kafka_input()  # Start the Kafka input in an async loop
             except KeyboardInterrupt:
                 print("Kafka listener stopped.")
 
@@ -102,14 +116,19 @@ def handle_parsed_data(data):
 #created by Aleksander | edited by Aga
 def create_NX4_line():
     # Example of adding nodes
-    production_line.add_stage(Stage(name="n105"))
-    production_line.add_stage(Stage(name="n115"))
-    production_line.add_stage(Stage(name="n120"))
-    production_line.add_stage(Stage(name="n125"))
-    production_line.add_stage(Stage(name="n135"))
-    production_line.add_stage(Stage(name="n140"))
-    production_line.add_stage(Stage(name="n145"))
-    production_line.add_stage(Stage(name="n160"))
+    production_line.add_stage(Stage(name="N105"))
+    production_line.add_stage(Stage(name="N115"))
+    production_line.add_stage(Stage(name="N120"))
+    production_line.add_stage(Stage(name="N125"))
+    production_line.add_stage(Stage(name="N135"))
+    production_line.add_stage(Stage(name="N140"))
+    production_line.add_stage(Stage(name="N145"))
+    production_line.add_stage(Stage(name="N147"))
+    production_line.add_stage(Stage(name="N150"))
+    production_line.add_stage(Stage(name="N160"))
+    production_line.add_stage(Stage(name="N162"))
+    production_line.add_stage(Stage(name="N165"))
+    production_line.add_stage(Stage(name="N170"))
 
 
 if __name__ == "__main__":
