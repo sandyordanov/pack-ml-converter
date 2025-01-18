@@ -1,9 +1,17 @@
 {
+<<<<<<< HEAD
     "name": "N160",
     "status": {
         "UnitModeCurrent": "Producing",
         "StateCurrent": "IDLE",
         "ExecuteTime": 0,
+=======
+    "name": "N170",
+    "status": {
+        "UnitModeCurrent": "Producing",
+        "StateCurrent": "COMPLETE",
+        "ExecuteTime": 1.04,
+>>>>>>> develop
         "MachSpeed": null,
         "CurMachSpeed": null,
         "EquipmentInterlock": {
@@ -20,7 +28,11 @@
     },
     "admin": {
         "StopReason.ID": "None",
+<<<<<<< HEAD
         "MessageTimestamp": "2025-01-13T10:52:48.791452+01:00",
+=======
+        "MessageTimestamp": "2025-01-15T16:23:51.847218+01:00",
+>>>>>>> develop
         "ProdProcessedCount": {
             "count": null
         },

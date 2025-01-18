@@ -116,14 +116,19 @@ def handle_parsed_data(data):
 #created by Aleksander | edited by Aga
 def create_NX4_line():
     # Example of adding nodes
-    production_line.add_stage(Stage(name="n105"))
-    production_line.add_stage(Stage(name="n115"))
-    production_line.add_stage(Stage(name="n120"))
-    production_line.add_stage(Stage(name="n125"))
-    production_line.add_stage(Stage(name="n135"))
-    production_line.add_stage(Stage(name="n140"))
-    production_line.add_stage(Stage(name="n145"))
-    production_line.add_stage(Stage(name="n160"))
+    production_line.add_stage(Stage(name="N105"))
+    production_line.add_stage(Stage(name="N115"))
+    production_line.add_stage(Stage(name="N120"))
+    production_line.add_stage(Stage(name="N125"))
+    production_line.add_stage(Stage(name="N135"))
+    production_line.add_stage(Stage(name="N140"))
+    production_line.add_stage(Stage(name="N145"))
+    production_line.add_stage(Stage(name="N147"))
+    production_line.add_stage(Stage(name="N150"))
+    production_line.add_stage(Stage(name="N160"))
+    production_line.add_stage(Stage(name="N162"))
+    production_line.add_stage(Stage(name="N165"))
+    production_line.add_stage(Stage(name="N170"))
 
 
 if __name__ == "__main__":
